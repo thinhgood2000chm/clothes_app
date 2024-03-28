@@ -645,8 +645,9 @@ ol {
 	font-weight: 700;
 }
 
-.hero__social {
-	margin-top: 190px;
+.hero__social { 
+	/* margin-top: 190px; */
+	margin:auto
 }
 
 .hero__social a {
@@ -669,8 +670,8 @@ ol {
 }
 
 .banner__item {
-	position: relative;
-	top: 300px;
+	position: relative; 
+	/* top: 300px; */ /* nếu lỗi thì xem lại chỗ này*/
 	overflow: hidden;
 }
 

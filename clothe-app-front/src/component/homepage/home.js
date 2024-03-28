@@ -10,6 +10,7 @@ import '../../static/css/nice-select.css'
 import '../../static/css/slicknav.min.css'
 import '../../static/css/style.css'
 import image1 from "../../static/img/icon/heart.png"
+// import image1 from "D:/seatech/ekyc_ui/folder_image_save/48bcfb4d-1ca4-412a-b313-28841e379c27.png"
 import compareIcom from "../../static/img/icon/compare.png"
 import searchIcon from "../../static/img/icon/search.png"
 import product from "../../static/img/product/product-3.jpg"
@@ -149,92 +150,16 @@ function Home(props) {
       </Carousel.Item>
     
     </Carousel>
-			{/* <CCarousel controls>
-  <CCarouselItem>
-    <CImage className="d-block w-100" src={hero1} alt="slide 1" />
-  </CCarouselItem>
-  <CCarouselItem>
-    <CImage className="d-block w-100" src={hero2} alt="slide 2" />
-  </CCarouselItem>
-  <CCarouselItem>
-    <CImage className="d-block w-100" src={hero1} alt="slide 3" />
-  </CCarouselItem>
-</CCarousel> */}
-				{/* <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-					<div class="carousel-inner">
-						<div class="carousel-item active">
-						<img src={hero1} class="d-block w-100" alt="..."/>
-						</div>
-						<div class="carousel-item">
-						<img src={hero2} class="d-block w-100" alt="..."/>
-						</div>
-				
-					</div>
-					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
-					</div> */}
+
 				</div>
-				<div className="hero__social">
+
+
+				{/* <div className="hero__social">
                                     <a href="#"><i className="fa fa-facebook"></i></a>
                                     <a href="#"><i className="fa fa-twitter"></i></a>
                                     <a href="#"><i className="fa fa-pinterest"></i></a>
                                     <a href="#"><i className="fa fa-instagram"></i></a>
-                                </div>
-
-{/* 
-			<section class="hero">
-		
-        <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg"><img src={hero1}/>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2030</h2>
-                                <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                commitment to exceptional quality.</p>
-                                <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a>
-                                <div class="hero__social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero__items set-bg" data-setbg="img/hero/hero-2.jpg"> <img src={hero2}/>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2030</h2>
-                                <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                commitment to exceptional quality.</p>
-                                <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a>
-                                <div class="hero__social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> */}
+                                </div> */}
 
 			<div class="banner spad">
 				<div class="container">
