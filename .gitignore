@@ -24,10 +24,10 @@ yarn-error.log*
 package-lock.json
 
 .idea/
-/cloth-app-back/venv
-/cloth-app-back/env
-/cloth-app-back/.idea
-/cloth-app-back/__pycache__/
-/cloth-app-back/alembic/__pycache__/
-/cloth-app-back/__pycache__/
-/cloth-app-back/alembic/versions/__pycache__/
+/clothe-app-back/venv
+/clothe-app-back/env
+/clothe-app-back/.idea
+/clothe-app-back/__pycache__/
+/clothe-app-back/alembic/__pycache__/
+/clothe-app-back/__pycache__/
+/clothe-app-back/alembic/__pycache__
