@@ -33,6 +33,7 @@ package-lock.json
 /clothe-app-back/alembic/versions/__pycache__/
 /clothe-app-back/api/base/__pycache__/
 /clothe-app-back/api/base/__pycache__/
+/clothe-app-back/api/third_party/model/__pycache__/
 
 
 

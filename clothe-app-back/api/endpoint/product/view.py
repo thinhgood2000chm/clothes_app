@@ -10,10 +10,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from api.base.schema import SuccessResponse, ResponseStatus, FailResponse
 from api.endpoint.product.schema import ResponseListProduct
 from api.library.constant import TYPE_MESSAGE_RESPONSE, CODE_ERROR_SERVER
-from api.library.funtions import convert_image_to_base64
+from api.library.function import convert_image_to_base64
+# from api.library.funtions import convert_image_to_base64
 from api.third_party.connect import MySQLService
 from api.third_party.model.products import Products
-from api.third_party.query.product import get_all_product_paging
+from api.third_party.query.product import get_all_product
 from setting.init_project import open_api_standard_responses, http_exception
 
 logger = logging.getLogger("product.view.py")
@@ -33,14 +34,14 @@ async def get_all_product(last_id: str = Query(""),  db: AsyncSession = Depends(
     code = message = status_code = ''
     try:
         # data:image/png;base64,
-        products_image_color = await get_all_product_paging(db, last_id)
+        products_image_color = await get_all_product(db, last_id)
         # products = await db.execute(select(Products).filter(Products.id > last_id).limit(1))
         products = {}
         for prod, img, color in products_image_color:
-
+            print(prod.id, img.id, color.id)
             string_base64 = ""
             if img:
-                base64_img = convert_image_to_base64(img.image_path)
+                base64_img = await convert_image_to_base64(img.image_path)
                 string_base64 = f'data:image/png;base64, {base64_img.decode()}'
             if prod.id not in products:
                 products[prod.id] = {
@@ -56,7 +57,7 @@ async def get_all_product(last_id: str = Query(""),  db: AsyncSession = Depends(
                 if string_base64:
                     products[prod.id]['image'].append(string_base64)
                 if color:
-                    products[prod.id]['color'].append(color.color_code)
+                    products[prod.id]['color'].append(string_base64)
         return products
         # return SuccessResponse[List[ResponseListProduct]](**products)
     except:
