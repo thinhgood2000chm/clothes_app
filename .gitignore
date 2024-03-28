@@ -26,5 +26,5 @@ package-lock.json
 /cloth-app-back/venv
 /cloth-app-back/env
 /cloth-app-back/.idea
-/cloth-app-back/__pycache__
-/cloth-app-back/alembic/__pycache__
+/cloth-app-back/__pycache__/
+/cloth-app-back/alembic/__pycache__/
