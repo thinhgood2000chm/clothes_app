@@ -2,19 +2,19 @@
 import logging
 from typing import List
 
-from sqlalchemy import select
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, Form, UploadFile, File
 from starlette.status import HTTP_200_OK, HTTP_500_INTERNAL_SERVER_ERROR
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.base.schema import SuccessResponse, ResponseStatus, FailResponse
-from api.endpoint.product.schema import ResponseListProduct
-from api.library.constant import TYPE_MESSAGE_RESPONSE, CODE_ERROR_SERVER
-from api.library.function import convert_image_to_base64
-# from api.library.funtions import convert_image_to_base64
+from api.endpoint.product.schema import ResponseListProduct, ResponseProduct
+from api.library.constant import CODE_ERROR_SERVER
+from api.library.function import convert_image_to_base64, save_image
 from api.third_party.connect import MySQLService
-from api.third_party.model.products import Products
-from api.third_party.query.product import get_all_product
+from api.third_party.model.colors import Colors
+from api.third_party.model.products import ProductsColor, Products
+from api.third_party.query.color import get_color_info
+from api.third_party.query.product import get_all_product_paging
 from setting.init_project import open_api_standard_responses, http_exception
 
 logger = logging.getLogger("product.view.py")
@@ -33,12 +33,9 @@ router = APIRouter()
 async def get_all_product(last_id: str = Query(""),  db: AsyncSession = Depends(MySQLService().get_db)):
     code = message = status_code = ''
     try:
-        # data:image/png;base64,
-        products_image_color = await get_all_product(db, last_id)
-        # products = await db.execute(select(Products).filter(Products.id > last_id).limit(1))
+        products_image_color = await get_all_product_paging(db, last_id)
         products = {}
         for prod, img, color in products_image_color:
-            print(prod.id, img.id, color.id)
             string_base64 = ""
             if img:
                 base64_img = await convert_image_to_base64(img.image_path)
@@ -48,18 +45,29 @@ async def get_all_product(last_id: str = Query(""),  db: AsyncSession = Depends(
                     "product_name": prod.product_name,
                     "description": prod.description,
                     "image": [string_base64],
-                    "quantity": "",
-                    "price": "",
-                    "category": "",
+                    "quantity": prod.quantity,
+                    "price": prod.price,
+                    "category": prod.category,
                     "color": [color.color_code] if color.color_code else []
                 }
             else:
                 if string_base64:
                     products[prod.id]['image'].append(string_base64)
                 if color:
-                    products[prod.id]['color'].append(string_base64)
-        return products
-        # return SuccessResponse[List[ResponseListProduct]](**products)
+                    products[prod.id]['color'].append(color.color_code)
+
+        list_product_response = []
+        for key, value in products.items():
+            list_product_response.append(value)
+        response_data = {
+            "data": list_product_response,
+            "response_status": {
+                "code": "00",
+                "type": "success",
+                "message": ""
+            }
+        }
+        return SuccessResponse[List[ResponseListProduct]](**response_data)
     except:
         logger.error(message, exc_info=True)
         return http_exception(
@@ -67,3 +75,51 @@ async def get_all_product(last_id: str = Query(""),  db: AsyncSession = Depends(
             code=code if code else CODE_ERROR_SERVER,
             message=message
         )
+
+
+
+@router.post(
+    path="/product",
+    name="create product",
+    description="create product product",
+    status_code=HTTP_200_OK,
+    responses=open_api_standard_responses(
+        success_status_code=HTTP_200_OK,
+        success_response_model=SuccessResponse[ResponseProduct],
+        fail_response_model=FailResponse[ResponseStatus]
+    )
+)
+async def get_all_product(
+        product_name: str = Form(""),
+        description: str = Form(""),
+        quantity: str = Form(""),
+        price: str = Form(""),
+        category: str = Form(""),
+        list_color_code: List[str] = Form(""),
+        list_image_upload: List[UploadFile] = File(None),
+        db: AsyncSession = Depends(MySQLService().get_db)
+):
+    print(list_color_code)
+    get_color = await get_color_info(db, list_color_code)
+
+    if get_color and len(get_color) == len(list_color_code):
+        new_product = Products(
+            product_name=product_name,
+            description=description,
+            quantity=quantity,
+            price=price,
+            category=category,
+        )
+        db.add(new_product)
+        await db.commit()
+        await db.refresh(new_product)
+        print(new_product.id)
+        await save_image(new_product.id, list_image_upload)
+
+
+
+        new_product_color = ProductsColor(
+
+        )
+
+    return None

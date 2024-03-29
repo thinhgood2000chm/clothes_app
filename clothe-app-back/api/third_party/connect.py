@@ -19,7 +19,7 @@ class MySQLService:
             logger.info("da khoi tao ket noi mongodb")
         return cls._instance
 
-    async def create_connection(self):
+    def create_connection(self):
         self.engine = create_async_engine(
             f"{config_system['DB_NAME']}+asyncmy://{config_system['DB_USER']}:{config_system['DB_PASSWORD']}@{config_system['DB_HOST']}/{config_system['DB_SCHEMA']}?charset=utf8mb4",
             echo=False, poolclass=NullPool)

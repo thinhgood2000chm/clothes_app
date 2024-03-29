@@ -374,7 +374,7 @@ function Home(props) {
 										<i class="fa fa-star-o"></i>
 										<i class="fa fa-star-o"></i>
 									</div>
-									<h5>$49.66</h5>
+									<h5>$49.66fffff</h5>
 									<div class="product__color__select">
 										<label for="pc-19">
 											<input type="radio" id="pc-19" />
@@ -382,7 +382,8 @@ function Home(props) {
 										<label class="active black" for="pc-20">
 											<input type="radio" id="pc-20" />
 										</label>
-										<label class="grey" for="pc-21">
+										{/* sẽ sử dụng cách này để hiênt thị màu */}
+										<label style={{"backgroundColor": "#C0392B"}} for="pc-21">
 											<input type="radio" id="pc-21" />
 										</label>
 									</div>

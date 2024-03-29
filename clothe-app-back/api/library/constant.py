@@ -6,3 +6,6 @@ TYPE_MESSAGE_RESPONSE = {
     CODE_TOKEN_NOT_VALID: 'token không phù hợp',
     CODE_ERROR_SERVER: 'Lỗi hệ thống'
 }
+
+
+LIMIT_PAGING = 10

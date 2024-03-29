@@ -18,6 +18,7 @@ config_system = {
     "DB_PASSWORD": dotenv_values.get("DB_PASSWORD", ""),
     "DB_HOST": dotenv_values.get("DB_HOST", ""),
     "DB_SCHEMA": dotenv_values.get("DB_SCHEMA", ""),
+    "PATH_SAVE_IMAGE": dotenv_values.get("PATH_SAVE_IMAGE", ""),
 }
 
 
@@ -68,6 +69,6 @@ def http_exception(
         detail={
             'code': code,
             'type': "success" if code == CODE_SUCCESS else 'fail',
-            'message': message if message else TYPE_MESSAGE_RESPONSE[lang][code]
+            'message': message if message else TYPE_MESSAGE_RESPONSE[code]
         }
     )

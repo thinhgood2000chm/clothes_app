@@ -9,5 +9,7 @@ class Colors(BaseModel):
     id = Column(BigInteger, primary_key=True, index=True)
     color_code = Column(String(100), nullable=False)
     color_name = Column(String(500), nullable=False)
+    products_color = relationship("ProductsColor")
+
 
 
