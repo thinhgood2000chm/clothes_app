@@ -20,7 +20,74 @@ import banner3 from "../../static/img/banner/banner-3.jpg"
 import hero1 from "../../static/img/hero/hero-1.jpg"
 import hero2 from "../../static/img/hero/hero-2.jpg"
 import { Link } from 'react-router-dom';
-function Home(props) {
+import { useState } from 'react';
+import { getListProduct } from "../../common/api/product"
+import { useEffect } from 'react';
+function Home() {
+
+	const [productInfo, setProductInfo] = useState()
+	const [lastProductId, setLastProductId] = useState()
+	const products = async () => {
+		try {
+			const productsResponse = await getListProduct();
+			console.log("123123", productsResponse)
+			var listProduct = []
+			if (productsResponse && productsResponse?.data?.list_product.length > 0) {
+				productsResponse?.data?.list_product.forEach(product => {
+					listProduct.push(
+					<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+						<div class="product__item">
+							<div class="product__item__pic set-bg" data-setbg="" ><img src={product.image[0]} alt="" />
+								<span class="label">Sale</span>
+								<ul class="product__hover">
+									<li><a href="#"><img src={image1} alt="" /></a></li>
+									<li><a href="#"><img src={compareIcom} alt="" /> <span>Compare</span></a></li>
+									<li><a href="#"><img src={searchIcon} alt="" /></a></li>
+								</ul>
+							</div>
+							<div class="product__item__text">
+								<h6>{product.product_name}</h6>
+								<a href="#" class="add-cart">+ Add To Cart</a>
+								<div class="rating">
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+									<i class="fa fa-star-o"></i>
+								</div>
+								<h5>{product.price}</h5>
+								<div class="product__color__select">
+								{product?.color.forEach(color=> {
+								<label  style={{ "backgroundColor": {color} }} for="">
+									<input type="radio"/>
+								</label>
+								})}
+						
+								
+									{/* <label class="active black" for="pc-20">
+										<input type="radio" id="pc-20" />
+									</label>
+									<label style={{ "backgroundColor": "#C0392B" }} for="pc-21">
+										<input type="radio" id="pc-21" />
+									</label> */}
+								</div>
+							</div>
+						</div>
+					</div>
+					)
+				})
+			}
+			console.log("sadfdf")
+			setProductInfo(listProduct)
+
+
+		} catch (error) {
+			console.error(error)
+		}
+	}
+	useEffect(() => {
+		products()
+	}, [])
 	return (
 		<div>
 
@@ -125,36 +192,36 @@ function Home(props) {
 			<div className='container'>
 
 
-			<Carousel>
-				<Carousel.Item>
-			<img
-			className="d-block w-100"
-			src={hero1}
-			alt="First slide"
-			/>
-        <Carousel.Caption>
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={hero2}
-          alt="First slide"
-        />
-        <Carousel.Caption>
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-    
-    </Carousel>
+				<Carousel>
+					<Carousel.Item>
+						<img
+							className="d-block w-100"
+							src={hero1}
+							alt="First slide"
+						/>
+						<Carousel.Caption>
+							<h5>First slide label</h5>
+							<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+						</Carousel.Caption>
+					</Carousel.Item>
+					<Carousel.Item>
+						<img
+							className="d-block w-100"
+							src={hero2}
+							alt="First slide"
+						/>
+						<Carousel.Caption>
+							<h5>First slide label</h5>
+							<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+						</Carousel.Caption>
+					</Carousel.Item>
 
-				</div>
+				</Carousel>
+
+			</div>
 
 
-				{/* <div className="hero__social">
+			{/* <div className="hero__social">
                                     <a href="#"><i className="fa fa-facebook"></i></a>
                                     <a href="#"><i className="fa fa-twitter"></i></a>
                                     <a href="#"><i className="fa fa-pinterest"></i></a>
@@ -213,7 +280,8 @@ function Home(props) {
 						</div>
 					</div>
 					<div class="row product__filter">
-
+						{productInfo}
+						///////////////////////////
 						<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
 							<div class="product__item sale">
 								<div class="product__item__pic set-bg" data-setbg={product} ><img src={product} alt="" />
@@ -376,15 +444,15 @@ function Home(props) {
 									</div>
 									<h5>$49.66fffff</h5>
 									<div class="product__color__select">
-										<label for="pc-19">
-											<input type="radio" id="pc-19" />
+										<label for="">
+											<input type="radio"/>
 										</label>
-										<label class="active black" for="pc-20">
-											<input type="radio" id="pc-20" />
+										<label class="active black" for="">
+											<input type="radio" />
 										</label>
 										{/* sẽ sử dụng cách này để hiênt thị màu */}
-										<label style={{"backgroundColor": "#C0392B"}} for="pc-21">
-											<input type="radio" id="pc-21" />
+										<label style={{ "backgroundColor": "#C0392B" }} for="">
+											<input type="radio" />
 										</label>
 									</div>
 								</div>
@@ -428,122 +496,6 @@ function Home(props) {
 					</div>
 				</div>
 			</section>
-
-			{/* <section class="categories spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="categories__text">
-                        <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="categories__hot__deal">
-                        <img src="img/product-sale.png" alt=""/>
-                        <div class="hot__deal__sticker">
-                            <span>Sale Of</span>
-                            <h5>$29.99</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 offset-lg-1">
-                    <div class="categories__deal__countdown">
-                        <span>Deal Of The Week</span>
-                        <h2>Multi-pocket Chest Bag Black</h2>
-                        <div class="categories__deal__countdown__timer" id="countdown">
-                            <div class="cd-item">
-                                <span>3</span>
-                                <p>Days</p>
-                            </div>
-                            <div class="cd-item">
-                                <span>1</span>
-                                <p>Hours</p>
-                            </div>
-                            <div class="cd-item">
-                                <span>50</span>
-                                <p>Minutes</p>
-                            </div>
-                            <div class="cd-item">
-                                <span>18</span>
-                                <p>Seconds</p>
-                            </div>
-                        </div>
-                        <a href="#" class="primary-btn">Shop now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> */}
-			{/* 
-    <section class="instagram spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="instagram__pic">
-                        <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-1.jpg"></div>
-                        <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-2.jpg"></div>
-                        <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-3.jpg"></div>
-                        <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-4.jpg"></div>
-                        <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-5.jpg"></div>
-                        <div class="instagram__pic__item set-bg" data-setbg="img/instagram/instagram-6.jpg"></div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="instagram__text">
-                        <h2>Instagram</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
-                        <h3>#Male_Fashion</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> */}
-
-			{/* <section class="latest spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <span>Latest News</span>
-                        <h2>Fashion New Trends</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-1.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""/> 16 February 2020</span>
-                            <h5>What Curling Irons Are The Best Ones</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-2.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""/> 21 February 2020</span>
-                            <h5>Eternity Bands Do Last Forever</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-3.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""/> 28 February 2020</span>
-                            <h5>The Health Benefits Of Sunglasses</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> */}
 			<footer class="footer">
 				<div class="container">
 					<div class="row">
