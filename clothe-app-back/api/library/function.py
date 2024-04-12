@@ -15,7 +15,7 @@ async def convert_image_to_base64(url_image):
     return encoded_image
 
 
-async def save_image(product_id, list_image):
+async def save_image(product_id, image, name):
     root_path = init_project.config_system["PATH_SAVE_IMAGE"]
     try:
         if root_path:
@@ -23,17 +23,17 @@ async def save_image(product_id, list_image):
             path = Path(f'{folder_path}')
             if not path.exists():
                 os.makedirs(folder_path)
-            image_in_folder = os.listdir(folder_path)
-            if image_in_folder:
-                for index in range(len(image_in_folder)):
-                    path_file = f'{folder_path}/{image_in_folder[index]}'
-                    os.remove(path_file)
-            for img in list_image:
-                data_image = await img.read()
-                # print(data_image)
-                print(type(data_image))
-                image = Image.open(BytesIO(data_image))
-                image.save(f'{path}/{uuid.uuid4()}.jpg')
+            # image_in_folder = os.listdir(folder_path)
+            # if image_in_folder:
+            #     for index in range(len(image_in_folder)):
+            #         path_file = f'{folder_path}/{image_in_folder[index]}'
+            #         os.remove(path_file)
+            # for img in list_image:
+            data_image = await image.read()
+            # print(data_image)
+            print(type(data_image))
+            ima = Image.open(BytesIO(data_image))
+            ima.save(f'{path}/{name}.jpg')
 
     except Exception as e:
         logger.error(e, exc_info=True)

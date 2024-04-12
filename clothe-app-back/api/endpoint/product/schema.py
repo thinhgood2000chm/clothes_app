@@ -9,7 +9,7 @@ class ResponseProduct(BaseModel):
     image: List[str] = Field([""], example='')
     quantity: Optional[int] = Field("", example='')
     price: Optional[float] = Field("", example='')
-    category: Optional[str] = Field("", example='')
+    category: Optional[int] = Field("", example='')
     color: List[str] = Field([], example='')
 
 

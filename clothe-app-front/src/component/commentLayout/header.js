@@ -69,8 +69,8 @@ function Header(){
             <div class="col-lg-6 col-md-6">
                 <nav class="header__menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="./index.html">Home</a></li>
-                        <li class="active"><Link to='/product' >Shop</Link></li>
+                        <li><Link to='/' >Home</Link></li>
+                        <li><Link to='/product' >Shop</Link></li>
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="./about.html">About Us</a></li>
@@ -80,8 +80,8 @@ function Header(){
                                 <li><a href="./blog-details.html">Blog Details</a></li>
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contacts</a></li>
+                        <li><Link to='/blog' >Blog</Link></li>
+                        <li><Link to='/contacts' >Contacts</Link></li>
                     </ul>
                 </nav>
             </div>

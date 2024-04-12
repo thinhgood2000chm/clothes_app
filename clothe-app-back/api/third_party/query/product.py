@@ -17,7 +17,7 @@ async def get_all_product_paging(db: AsyncSession, last_id=0):
             ProductsColor, ProductsColor.product_id == Products.id
         ).join(
             Colors, Colors.id == ProductsColor.color_id, isouter=True
-        ).filter(Products.id > last_id).limit(LIMIT_PAGING)
+        ).filter(Products.id > last_id, ProductsImage.main_image == True).limit(LIMIT_PAGING)
 
     )
     products = productss.all()

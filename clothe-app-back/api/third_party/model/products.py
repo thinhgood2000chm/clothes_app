@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 from api.third_party.model.base import BaseModel
 
 from api.third_party.model.image import ProductsImage
+from api.third_party.model.category import Categories
 
 class Products(BaseModel):
     __tablename__ = "products"
@@ -13,7 +14,7 @@ class Products(BaseModel):
     description = Column(String(500), nullable=True)
     quantity = Column(Integer, nullable=False, default=0)
     price = Column(Float, nullable=False, default=0)
-    category = Column(String(500), nullable=True, index=True)
+    category = Column(BigInteger,  ForeignKey('categories.id'), index=True)
     products_color = relationship("ProductsColor")
     product_image = relationship("ProductsImage")
 

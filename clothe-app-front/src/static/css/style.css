@@ -487,7 +487,7 @@ ol {
 	padding: 3px 0;
 }
 
-.header__menu ul li a:after {
+.header__menu ul li :after {
 	position: absolute;
 	left: 0;
 	bottom: 0;
