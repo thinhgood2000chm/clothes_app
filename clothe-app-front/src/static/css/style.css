@@ -3662,14 +3662,18 @@ ol {
 		display: none;
 
 	}
+	
 	/* --------------------------------------------------------------------*/
-	.header__menu ul{
-		text-align: center;
-	}
-	.header__menu ul li{
+	.mobile-menu {
 		display: Block;
 	}
-	.header__menu ul li:last-child {
+	.mobile-menu ul{
+		text-align: center;
+	}
+	.mobile-menu ul li{
+		display: Block;
+	}
+	.mobile-menu ul li:last-child {
 		margin-right: 45px;
 	}
 	

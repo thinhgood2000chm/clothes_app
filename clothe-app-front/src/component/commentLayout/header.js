@@ -98,7 +98,7 @@ function Header() {
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-6">
-                            <nav className="header__menu mobile-menu">
+                            <nav className="header__menu">
                                 <ul>
                                     <li><Link to='/' >Home</Link></li>
                                     <li><Link to='/product' >Shop</Link></li>
