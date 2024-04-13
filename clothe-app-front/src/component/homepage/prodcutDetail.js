@@ -9,9 +9,10 @@ import img3 from "../../static/img/shop-details/product-big-3.png"
 import img2 from "../../static/img/shop-details/product-big-2.png"
 // import img1 from "../../static/img/shop-details/product-big.png"
 import img1 from "../../static/img/shop-details/images.png"
-
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 function ProductDetail(){
+    const {productId} = useParams(){/* :usercode chinhs là param để khi sử dụng useParam có thể lấy ra được(phải đúng tên) trong navigate hoặc Link, ko cần truyền state*/}
+    console.log("aaaaaaaaaaaa", productId)
     return(
         <div>
        <section class="shop-details">

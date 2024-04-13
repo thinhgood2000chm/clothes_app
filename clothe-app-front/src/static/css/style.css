@@ -3880,3 +3880,9 @@ ol {
 	margin-right: 15px;
     margin-left: 15px
 }
+
+
+
+.img_product:hover{
+	cursor: pointer;
+}
