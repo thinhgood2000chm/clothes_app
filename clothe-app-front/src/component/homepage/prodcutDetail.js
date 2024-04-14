@@ -21,8 +21,8 @@ function ProductDetail(){
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="product__details__breadcrumb">
-                            <Link to='/'>Home</Link>
-                            <Link to="/product">Shop</Link>
+                            <Link to='/'>Trang chủ</Link>
+                            <Link to="/product">sản phâmr</Link>
                             <span>Product Details</span>
                         </div>
                     </div>

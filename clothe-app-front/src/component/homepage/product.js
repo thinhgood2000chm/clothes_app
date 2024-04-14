@@ -17,10 +17,10 @@ function Product(props) {
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="breadcrumb__text">
-                                <h4>Shop</h4>
+                                <h4>Sản phẩm</h4>
                                 <div className="breadcrumb__links">
-                                    <a href="./index.html">Home</a>
-                                    <span>Shop</span>
+                                <span><Link to='/' >Trang chủ</Link></span>
+                                <span>Sản phẩm</span>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@ function Product(props) {
               
                                          <a data-toggle="collapse" data-target="#collapseOne">Categories</a> 
                                     </div> */}
-                                                    <Accordion.Header><strong>Categories</strong></Accordion.Header>
+                                                    <Accordion.Header><strong>Loại sản phẩm</strong></Accordion.Header>
                                                     <Accordion.Body>
                                                         <div id="collapseOne" className="collapse show" data-parent="#accordionExample">
                                                             <div className="card-body">
@@ -77,7 +77,7 @@ function Product(props) {
                                                     {/* <div className="card-heading">
                                         <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
                                     </div> */}
-                                                    <Accordion.Header><strong>Price</strong></Accordion.Header>
+                                                    <Accordion.Header><strong>Gía thành</strong></Accordion.Header>
                                                     <Accordion.Body>
                                                         <div id="collapseThree" className="collapse show" data-parent="#accordionExample">
                                                             <div className="card-body">
@@ -100,7 +100,7 @@ function Product(props) {
 
                                             <Accordion.Item eventKey="2">
                                                 <div className="card">
-                                                    <Accordion.Header><strong>Size</strong></Accordion.Header>
+                                                    <Accordion.Header><strong>Kích thước</strong></Accordion.Header>
                                                     {/* <div className="card-heading">
                                                 <a data-toggle="collapse" data-target="#collapseFour">Size</a>
                                             </div> */}
@@ -143,7 +143,7 @@ function Product(props) {
                                         {/* <div className="card-heading">
                                             <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
                                         </div> */}
-                                        <Accordion.Header><strong>Colors</strong></Accordion.Header>
+                                        <Accordion.Header><strong>Màu sắc</strong></Accordion.Header>
                                         <Accordion.Body>
                                         <div id="collapseFive" className="collapse show" data-parent="#accordionExample">
                                             <div className="card-body">
@@ -346,11 +346,11 @@ function Product(props) {
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-sm-6">
                                     <div className="shop__product__option__right">
-                                        <p>Sort by Price:</p>
+                                        <p>Sắp xếp theo giá tiền:</p>
                                         <select>
-                                            <option value="">Low To High</option>
-                                            <option value="">$0 - $55</option>
-                                            <option value="">$55 - $100</option>
+                                            <option value="">Thấp đến cao</option>
+                                            <option value="">Cao đến thấp</option>
+                                            {/* <option value="">$55 - $100</option> */}
                                         </select>
                                     </div>
                                 </div>
