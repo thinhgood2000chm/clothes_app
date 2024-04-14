@@ -143,8 +143,8 @@ function Home() {
 									<img src={banner1} alt="" />
 								</div>
 								<div class="banner__item__text">
-									<h2>Clothing Collections 2030</h2>
-									<a href="#">Shop now</a>
+									<h2>Mãu áo Phú Quốc</h2>
+									<a href="#">Đặt ngay</a>
 								</div>
 							</div>
 						</div>
@@ -154,8 +154,8 @@ function Home() {
 									<img src={banner2} alt="" />
 								</div>
 								<div class="banner__item__text">
-									<h2>Accessories</h2>
-									<a href="#">Shop now</a>
+									<h2>Mẫu áo Nha Trang</h2>
+									<a href="#">Đặt ngay</a>
 								</div>
 							</div>
 						</div>
@@ -165,8 +165,8 @@ function Home() {
 									<img src={banner3} walt="" />
 								</div>
 								<div class="banner__item__text">
-									<h2>Shoes Spring 2030</h2>
-									<a href="#">Shop now</a>
+									<h2>Áo trẻ em</h2>
+									<a href="#">Đặt ngay</a>
 								</div>
 							</div>
 						</div>
@@ -179,9 +179,9 @@ function Home() {
 					<div class="row">
 						<div class="col-lg-12">
 							<ul class="filter__controls">
-								<li class="active" data-filter="*">Best Sellers</li>
-								<li data-filter=".new-arrivals">New Arrivals</li>
-								<li data-filter=".hot-sales">Hot Sales</li>
+								<li class="active" data-filter="*">Bán chạy nhất</li>
+								<li data-filter=".new-arrivals">Hàng mới</li>
+								<li data-filter=".hot-sales">Sản phẩm giảm giá</li>
 							</ul>
 						</div>
 					</div>

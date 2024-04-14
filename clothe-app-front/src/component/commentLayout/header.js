@@ -19,16 +19,15 @@ function Header() {
             <div className={activeclassName}>
                 <div className="offcanvas__option">
                     <div className="offcanvas__links">
-                        <a href="#">Sign in</a>
-                        <a href="#">FAQs</a>
+                        <a href="#">Đăng kí</a>
+                        <a href="#">Đăng nhập</a>
                     </div>
                     <div className="offcanvas__top__hover">
-                        <span>Usd <i className="arrow_carrot-down"></i></span>
-                        <ul>
-                            <li>USD</li>
-                            <li>EUR</li>
-                            <li>USD</li>
-                        </ul>
+                        <span>VND <i className="arrow_carrot-down"></i></span>
+                            <ul>
+                                <li>VND</li>
+                                <li>USD</li>
+                            </ul>
                     </div>
                 </div>
                 <div className="offcanvas__nav__option">
@@ -41,9 +40,9 @@ function Header() {
                 <div>
                     <nav className="header__menu mobile-menu">
                         <ul>
-                            <li><Link to='/' >Home</Link></li>
-                            <li><Link to='/product' >Shop</Link></li>
-                            <li><a href="#">Pages</a>
+                            <li><Link to='/' >Trang chủ</Link></li>
+                            <li><Link to='/product' >Sản phẩm</Link></li>
+                            {/* <li><a href="#">Pages</a>
                                 <ul className="dropdown">
                                     <li><a href="./about.html">About Us</a></li>
                                     <li><a href="./shop-details.html">Shop Details</a></li>
@@ -51,9 +50,9 @@ function Header() {
                                     <li><a href="./checkout.html">Check Out</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
-                            </li>
-                            <li><Link to='/blog'>Blog</Link></li>
-                            <li><Link to='/contacts'>Contacts</Link></li>
+                            </li> */}
+                            {/* <li><Link to='/blog'>Blog</Link></li> */}
+                            <li><Link to='/contacts'>Liên hệ</Link></li>
                         </ul>
                     </nav>
                 </div>
@@ -74,14 +73,13 @@ function Header() {
                             <div className="col-lg-6 col-md-5">
                                 <div className="header__top__right">
                                     <div className="header__top__links">
-                                        <a href="#">Sign in</a>
-                                        <a href="#">FAQs</a>
+                                        <a href="#">Đăng kí</a>
+                                        <a href="#">Đăng nhập</a>
                                     </div>
                                     <div className="header__top__hover">
-                                        <span>Usd <i className="arrow_carrot-down"></i></span>
+                                        <span>VND <i className="arrow_carrot-down"></i></span>
                                         <ul>
-                                            <li>USD</li>
-                                            <li>EUR</li>
+                                            <li>VND</li>
                                             <li>USD</li>
                                         </ul>
                                     </div>
@@ -100,9 +98,9 @@ function Header() {
                         <div className="col-lg-6 col-md-6">
                             <nav className="header__menu">
                                 <ul>
-                                    <li><Link to='/' >Home</Link></li>
-                                    <li><Link to='/product' >Shop</Link></li>
-                                    <li><a href="#">Pages</a>
+                                    <li><Link to='/' >Trang chủ</Link></li>
+                                    <li><Link to='/product' >Sản phẩm</Link></li>
+                                    {/* <li><a href="#">Pages</a>
                                         <ul className="dropdown">
                                             <li><a href="./about.html">About Us</a></li>
                                             <li><a href="./shop-details.html">Shop Details</a></li>
@@ -111,8 +109,8 @@ function Header() {
                                             <li><a href="./blog-details.html">Blog Details</a></li>
                                         </ul>
                                     </li>
-                                    <li><Link to='/blog' >Blog</Link></li>
-                                    <li><Link to='/contacts' >Contacts</Link></li>
+                                    <li><Link to='/blog' >Blog</Link></li> */}
+                                    <li><Link to='/contacts' >Liên hệ</Link></li>
                                 </ul>
                             </nav>
                         </div>
