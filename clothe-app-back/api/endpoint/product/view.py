@@ -66,7 +66,7 @@ async def get_all_product(last_id: str = Query(""), db: AsyncSession = Depends(M
         for key, value in products.items():
             list_product_response.append(value)
 
-        last_pro_id = list_product_response[-1]['id']
+        last_pro_id = list_product_response[-1]['id'] if list_product_response else None
         response_data = {
             "data": {
                 "list_product": list_product_response,

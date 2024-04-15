@@ -74,8 +74,8 @@ function Header() {
                             <div className="col-lg-6 col-md-5">
                                 <div className="header__top__right">
                                     <div className="header__top__links">
-                                    <Link to="/register">Đăng kí</Link>
-                        <Link to="/login">Đăng nhập</Link>
+                                        <Link to="/register">Đăng kí</Link>
+                                        <Link to="/login">Đăng nhập</Link>
                                     </div>
                                     <div className="header__top__hover">
                                         <span>VND <i className="arrow_carrot-down"></i></span>

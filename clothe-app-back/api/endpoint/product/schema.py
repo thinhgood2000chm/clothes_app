@@ -15,5 +15,5 @@ class ResponseProduct(BaseModel):
 
 class ResponseListProduct(BaseModel):
     list_product: List[ResponseProduct] = Field(..., example=[])
-    last_id: int = Field(..., example=0)
+    last_id: Optional[int] = Field(..., example=0)
 

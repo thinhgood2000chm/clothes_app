@@ -10,6 +10,7 @@ import Layout from './component/commentLayout/layout';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './component/loginpage/register';
+import AddProductForm from './component/adminPage/addProduct';
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
                 <Routes>
 
                   {/* <Route element={<PublicRoute />}> */}
+                  AddProductForm
+                  <Route path='/admin/product' element={<AddProductForm/>} />
                   <Route path='/login' element={<Login/>} />
                   <Route path='/register' element={<Register/>} />
                   <Route element = {<Layout/>}>
