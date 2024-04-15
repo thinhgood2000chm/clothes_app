@@ -1,0 +1,124 @@
+.content-container {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5dc; /* Màu da */
+  color: #333; /* Màu chữ */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px; /* Giảm chiều rộng của form */
+  width: 100%; /* Đảm bảo form luôn chiếm toàn bộ chiều rộng của màn hình */
+}
+
+.logo {
+  width: 100px; /* Độ rộng của logo */
+  margin-bottom: 20px; /* Khoảng cách giữa logo và tiêu đề */
+}
+
+
+
+.login-btn {
+  width: 50%; /* Độ rộng của nút login */
+  padding: 10px 20px;
+  background-color: #333; /* Màu trắng */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #555; /* Tăng độ sáng khi di chuột qua */
+}
+
+
+.register-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px; /* Tăng chiều rộng của form */
+  width: 100%; /* Đảm bảo form luôn chiếm toàn bộ chiều rộng của màn hình */
+  box-sizing: border-box; /* Kích thước tính cả padding và border */
+}
+
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  /* border-radius: 10px; */
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.register-btn {
+  width: 100%; /* Độ rộng của nút register */
+  padding: 10px 20px;
+  background-color: #333; /* Màu trắng */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-btn:hover {
+  background-color: #555; /* Tăng độ sáng khi di chuột qua */
+}
+
+p {
+  margin-top: 20px; /* Khoảng cách giữa form và phần đăng nhập */
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+@media screen and (max-width: 600px) {
+  .login-container {
+    padding: 20px;
+    max-width: 300px;
+  }
+
+  .login-btn {
+    width: 100%;
+  }
+  .register-container {
+    padding: 20px;
+    max-width: 300px;
+  }   
+
+  .register-btn{
+    width: 100%;
+  }
+}

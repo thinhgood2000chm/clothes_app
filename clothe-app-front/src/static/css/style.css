@@ -339,6 +339,7 @@ ol {
 }
 
 .header__top__links a {
+	text-decoration: none;
 	color: #ffffff;
 	font-size: 13px;
 	text-transform: uppercase;
@@ -479,6 +480,7 @@ ol {
 }
 
 .header__menu ul li a {
+	text-decoration:none;
 	font-size: 18px;
 	color: #111111;
 	display: block;
@@ -3563,6 +3565,7 @@ ol {
 		margin-right: 25px;
 	}
 	.offcanvas__links a {
+		text-decoration: none;
 		color: #111111;
 		font-size: 13px;
 		text-transform: uppercase;
@@ -3571,6 +3574,7 @@ ol {
 		display: inline-block;
 		font-weight: 600;
 	}
+
 	.offcanvas__links a:last-child {
 		margin-right: 0;
 	}

@@ -1,6 +1,7 @@
 import './App.css';
 import Home from '../src/component/homepage/home'
 import Product from '../src/component/homepage/product'
+import Login from '../src/component/loginpage/login'
 import ProductDetail from '../src/component/homepage/prodcutDetail'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, {Fragment } from 'react';
@@ -8,8 +9,7 @@ import PublicRoute from '../src/common/PublicRoute';
 import Layout from './component/commentLayout/layout';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
+import Register from './component/loginpage/register';
 
 
 function App() {
@@ -22,7 +22,10 @@ function App() {
                 <Routes>
 
                   {/* <Route element={<PublicRoute />}> */}
+                  <Route path='/login' element={<Login/>} />
+                  <Route path='/register' element={<Register/>} />
                   <Route element = {<Layout/>}>
+
                     <Route path='/' element={<Home/>} />
                     <Route path='/product' element={<Product/>} />
                     <Route path='/product-detail/:productId' element={<ProductDetail/>} />
