@@ -23,7 +23,6 @@ function App() {
                 <Routes>
 
                   {/* <Route element={<PublicRoute />}> */}
-                  AddProductForm
                   <Route path='/admin/product' element={<AddProductForm/>} />
                   <Route path='/login' element={<Login/>} />
                   <Route path='/register' element={<Register/>} />

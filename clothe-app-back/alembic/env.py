@@ -13,6 +13,7 @@ from api.third_party.model.colors import Colors
 from api.third_party.model.users import Users
 from api.third_party.model.products import Products
 from api.third_party.model.image import ProductsImage
+from api.third_party.model.size import ProductsSize
 
 config = context.config
 

@@ -70,7 +70,6 @@ try {
         {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json',
                 // 'Authorization': `Bearer ${token}`
             },
             body: productData

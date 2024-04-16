@@ -33,6 +33,9 @@ async def save_image(product_id, image, name):
             # print(data_image)
             print(type(data_image))
             ima = Image.open(BytesIO(data_image))
+            if ima.mode != "RGB":
+                ima = ima.convert("RGB")
+
             ima.save(f'{path}/{name}.jpg')
 
     except Exception as e:

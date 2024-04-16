@@ -15,6 +15,7 @@ function AddProductForm() {
 
 
     const addNewProduct = async (productData) =>{
+        console.log(productData)
         await createProduct(productData)
     }
     const handleProductImageChange = (event) => {
@@ -64,7 +65,7 @@ function AddProductForm() {
    
     function setValueProductCategory(event){
         var prodCate = event.target.value
-        console.log(prodCate)
+        console.log("asdfasdf", prodCate)
         setProductType(prodCate)
     }
 
@@ -87,6 +88,7 @@ function AddProductForm() {
     }
     function addNewProd(){
         var formData = new FormData();
+        console.log(productColor,productName)
         formData.append('list_color_code', productColor);
         formData.append('product_name', productName);
         formData.append('quantity', productQuantity);
@@ -104,7 +106,7 @@ function AddProductForm() {
         // formData.append('video_upload', postVideo);
         // setOnLoading(true)
         // callApiCreateNewPost(formData)
-
+        console.log(formData)
         addNewProduct(formData)
     }
     return (
@@ -130,9 +132,9 @@ function AddProductForm() {
             <div class="form-group">
                 <label for="productType">Product Type:</label>
                 <select id="productType" name="productType" value={productType} onChange={setValueProductCategory} required>
-                    <option value="type1">Type 1</option>
-                    <option value="type2">Type 2</option>
-                    <option value="type3">Type 3</option>
+                    <option value="1">Type 1</option>
+                    <option value="2">Type 2</option>
+                    <option value="3">Type 3</option>
 
                 </select>
             </div>

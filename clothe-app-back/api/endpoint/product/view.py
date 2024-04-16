@@ -15,6 +15,7 @@ from api.third_party.connect import MySQLService
 from api.third_party.model.colors import Colors
 from api.third_party.model.image import ProductsImage
 from api.third_party.model.products import ProductsColor, Products
+from api.third_party.query.category import get_category_by_id
 from api.third_party.query.color import get_color_info
 from api.third_party.query.product import get_all_product_paging, get_product
 from setting import init_project
@@ -40,7 +41,8 @@ async def get_all_product(last_id: str = Query(""), db: AsyncSession = Depends(M
     try:
         products_image_color = await get_all_product_paging(db, last_id)
         products = {}
-        for prod, img, color in products_image_color:
+
+        for prod, img, color, size in products_image_color:
             string_base64 = ""
             if img:
                 base64_img = await convert_image_to_base64(img.image_path)
@@ -54,15 +56,17 @@ async def get_all_product(last_id: str = Query(""), db: AsyncSession = Depends(M
                     "quantity": prod.quantity,
                     "price": prod.price,
                     "category": prod.category,
-                    "color": [color.color_code] if color.color_code else [],
+                    "color": [color.color_code] if color else [],
+                    "size": [size.size] if size else [],
                     "image_id": img.id
                 }
             else:
                 if color and color.color_code not in products[prod.id]['color']:
                     products[prod.id]['color'].append(color.color_code)
+                if size and size.size not in products[prod.id]['size']:
+                    products[prod.id]['size'].append(size.size)
 
         list_product_response = []
-
         for key, value in products.items():
             list_product_response.append(value)
 
@@ -100,12 +104,12 @@ async def get_all_product(last_id: str = Query(""), db: AsyncSession = Depends(M
     )
 )
 async def create_product(
-        product_name: str = Form(""),
+        product_name: str = Form(...),
         description: str = Form(""),
         quantity: str = Form(""),
         price: str = Form(""),
         category: str = Form(""),
-        list_color_code: List[str] = Form(""),
+        list_color_code: List[str] = Form([]),
         list_image_upload: List[UploadFile] = File(None),
         main_image_upload: UploadFile = File(None),
         db: AsyncSession = Depends(MySQLService().get_db)
@@ -113,13 +117,13 @@ async def create_product(
     status_code = message = code = ""
     try:
         get_colors = await get_color_info(db, list_color_code)
-
-        if get_colors and len(get_colors) == len(list_color_code):
+        get_category = await get_category_by_id(category, db)
+        if get_colors and len(get_colors) == len(list_color_code) and get_category:
             new_product = Products(
                 product_name=product_name,
                 description=description,
-                quantity=quantity,
-                price=price,
+                quantity=int(quantity),
+                price=float(price),
                 category=category,
             )
             db.add(new_product)

@@ -10,4 +10,4 @@ CODE_ERROR_INPUT: "đầu vào không hợp lệ",
 }
 
 
-LIMIT_PAGING = 10
+LIMIT_PAGING = 30
