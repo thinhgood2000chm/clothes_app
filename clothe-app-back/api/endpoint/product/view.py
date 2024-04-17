@@ -109,6 +109,7 @@ async def create_product(
         quantity: str = Form(""),
         price: str = Form(""),
         category: str = Form(""),
+        list_size: List[str] = Form([]),
         list_color_code: List[str] = Form([]),
         list_image_upload: List[UploadFile] = File(None),
         main_image_upload: UploadFile = File(None),
@@ -116,55 +117,77 @@ async def create_product(
 ):
     status_code = message = code = ""
     try:
+        print(list_color_code)
         get_colors = await get_color_info(db, list_color_code)
         get_category = await get_category_by_id(category, db)
-        if get_colors and len(get_colors) == len(list_color_code) and get_category:
-            new_product = Products(
-                product_name=product_name,
-                description=description,
-                quantity=int(quantity),
-                price=float(price),
-                category=category,
-            )
-            db.add(new_product)
-            await db.commit()
-            await db.refresh(new_product)
-            if not main_image_upload:
-                status_code = HTTP_400_BAD_REQUEST
-                code = CODE_ERROR_INPUT
-                message = "Bắt buộc phải có ảnh chính"
-                raise HTTPException(status_code)
-            name_main_image = uuid.uuid4()
-            await save_image(new_product.id, main_image_upload, name_main_image)
-            list_img_product = []
-            list_img_product.append(
-                {
-                    "image_path": fr'{init_project.config_system["PATH_SAVE_IMAGE"]}/{new_product.id}/{name_main_image}.jpg',
-                    "product_id": new_product.id,
-                    "main_image": True
-                })
-            if list_image_upload:
-                for image in list_image_upload:
-                    name_image = uuid.uuid4()
-                    await save_image(new_product.id, image, name_image)
-                    list_img_product.append(
-                        {
-                            "image_path": f'{init_project.config_system["PATH_SAVE_IMAGE"]}/{new_product.id}/{name_image}.jpg',
-                            "product_id": new_product.id,
-                            "main_image": False
-                        }
+        print(not get_colors)
+        print(get_colors and len(get_colors) == len(list_color_code))
+        if not get_colors or not (get_colors and len(get_colors) == len(list_color_code)) :
+            status_code = HTTP_400_BAD_REQUEST
+            code = CODE_ERROR_INPUT
+            message = "color không tồn tại"
+            raise HTTPException(status_code)
+        if not get_category:
+            status_code = HTTP_400_BAD_REQUEST
+            code = CODE_ERROR_INPUT
+            message = "category không tồn tại"
+            raise HTTPException(status_code)
 
-                    )
-            await db.execute(insert(ProductsImage).values(list_img_product))
-            await db.commit()
-
-            list_color = [{
+        new_product = Products(
+            product_name=product_name,
+            description=description,
+            quantity=int(quantity),
+            price=float(price),
+            category=category,
+        )
+        db.add(new_product)
+        await db.commit()
+        await db.refresh(new_product)
+        if not main_image_upload:
+            status_code = HTTP_400_BAD_REQUEST
+            code = CODE_ERROR_INPUT
+            message = "Bắt buộc phải có ảnh chính"
+            raise HTTPException(status_code)
+        name_main_image = uuid.uuid4()
+        await save_image(new_product.id, main_image_upload, name_main_image)
+        list_img_product = []
+        list_img_product.append(
+            {
+                "image_path": fr'{init_project.config_system["PATH_SAVE_IMAGE"]}/{new_product.id}/{name_main_image}.jpg',
                 "product_id": new_product.id,
-                "color_id": color.id
-            } for color in get_colors]
+                "main_image": True
+            })
+        if list_image_upload:
+            for image in list_image_upload:
+                name_image = uuid.uuid4()
+                await save_image(new_product.id, image, name_image)
+                list_img_product.append(
+                    {
+                        "image_path": f'{init_project.config_system["PATH_SAVE_IMAGE"]}/{new_product.id}/{name_image}.jpg',
+                        "product_id": new_product.id,
+                        "main_image": False
+                    }
 
-            await db.execute(insert(ProductsColor).values(list_color))
-            await db.commit()
+                )
+        await db.execute(insert(ProductsImage).values(list_img_product))
+        await db.commit()
+        sizes = [{
+            "product_id": new_product.id,
+            "size": size
+        } for size in list_size]
+        await db.execute(insert(ProductsSize).values(sizes))
+        await db.commit()
+
+        list_color = [{
+            "product_id": new_product.id,
+            "color_id": color.id
+        } for color in get_colors]
+        print(new_product.id)
+        await db.execute(insert(ProductsColor).values(list_color))
+        await db.commit()
+        return SuccessResponse[ResponseProduct](**new_product)
+
+
     except:
         logger.error(TYPE_MESSAGE_RESPONSE[code] if not message else message, exc_info=True)
         return http_exception(
@@ -228,7 +251,6 @@ async def get_detail_product(product_id: str, db: AsyncSession = Depends(MySQLSe
         }
         # print(response_data)
         return SuccessResponse[ResponseProduct](**response_data)
-        return product
     except:
         logger.error(message, exc_info=True)
         return http_exception(

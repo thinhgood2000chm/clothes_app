@@ -15,4 +15,5 @@ async def get_color_info(db: AsyncSession, list_color_code: List):
 
     )
     colors = color_engine.scalars().all()
+    print(colors)
     return colors
