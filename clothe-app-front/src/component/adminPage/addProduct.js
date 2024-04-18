@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../static/css/admin.css'
 import { createProduct } from '../../common/api/product';
+import { getListCategory } from '../../common/api/category';
 function AddProductForm() {
     const [productName, setProductName] = useState('');
     const [productColor, setProductColor] = useState([]);
@@ -12,11 +13,27 @@ function AddProductForm() {
     const [mainImageUpload, setMainImageUpload] = useState()
     const [galleryImages, setGalleryImages] = useState([]);
     const [subImageUpload, setSubImagesUpload] = useState([]);
+    const [sizeInputs, setsizeInputs] = useState([""]);
+    const [categories, setCategories] = useState();
 
 
     const addNewProduct = async (productData) =>{
-        console.log(productData)
         await createProduct(productData)
+    }
+    const getAllCategory = async () =>{
+        var allCategory = await getListCategory()
+        if(allCategory && allCategory?.data?.length>0){
+            var listCategoriesOption = []
+            allCategory?.data.forEach(category =>{
+                listCategoriesOption.push(
+                    <option value={category.id}>{category.name}</option>
+                )
+
+            })
+            
+        }
+        setCategories(listCategoriesOption)
+
     }
     const handleProductImageChange = (event) => {
         const file = event.target.files[0];
@@ -65,7 +82,6 @@ function AddProductForm() {
    
     function setValueProductCategory(event){
         var prodCate = event.target.value
-        console.log("asdfasdf", prodCate)
         setProductType(prodCate)
     }
 
@@ -96,6 +112,7 @@ function AddProductForm() {
         formData.append('category', productType);
         formData.append('description', productDescription);
         formData.append('main_image_upload', mainImageUpload);
+        formData.append('list_size', sizeInputs)
 
         if(subImageUpload?.length > 0 ){
             subImageUpload.forEach((image, index) => {
@@ -109,6 +126,13 @@ function AddProductForm() {
         console.log(formData)
         addNewProduct(formData)
     }
+    const addNewInputTextSize = () => {
+        setsizeInputs([...sizeInputs, ""]);
+      };
+    
+      useEffect(()=>{
+        getAllCategory()
+      }, [])
     return (
         <div class="add-content-product-container">
         <div className="container content-form-product">
@@ -122,19 +146,35 @@ function AddProductForm() {
                 <label for="productColor">Product Color:</label>
                 <div class="color-palette">
                     <div class="color" id = "c1"style={{backgroundColor: "#ff0000"}} data-color="#ff0000" onMouseDown={setColors}></div>
-                    <div class="color " id = "c2" style={{backgroundColor: "#00ff00"}} data-color="#00ff00" onMouseDown={setColors}></div>
+                    <div class="color " id = "c2" style={{backgroundColor: "#FFA500"}} data-color="#FFA500" onMouseDown={setColors}></div>
                     <div class="color " id = "c3" style={{backgroundColor: "#0000ff"}} data-color="#0000ff"  onMouseDown={setColors}></div>
                     <div class="color " id = "c4" style={{backgroundColorr: "#ffff00"}} data-color="#ffff00"  onMouseDown={setColors}></div>
                     <div class="color " id = "c5" style={{backgroundColor: "#ff00ff"}} data-color="#ff00ff"  onMouseDown={setColors}></div>
                     <div class="color " id = "c6" style={{backgroundColor: "#00ffff"}} data-color="#00ffff"  onMouseDown={setColors}></div>
                 </div>
             </div>
+            <div id="inputContainer">
+            {sizeInputs.map((input, index) => (
+                <input key={index} type="text" value={input} className='inputContent'
+                    onChange={(event) => {
+                        console.log("dsfdfdf")
+                        // Update the value of the corresponding input in the state array
+                        const newsizeInputs = [...sizeInputs];
+                        newsizeInputs[index] = event.target.value;
+                        setsizeInputs(newsizeInputs);
+                        console.log(sizeInputs)
+                    }}
+                    />
+                ))}
+            </div>
+            <div className="btn btn-success addNewSize" onClick={addNewInputTextSize}> Thêm kích thước</div>
             <div class="form-group">
                 <label for="productType">Product Type:</label>
                 <select id="productType" name="productType" value={productType} onChange={setValueProductCategory} required>
-                    <option value="1">Type 1</option>
+                    {categories}
+                    {/* <option value="1">Type 1</option>
                     <option value="2">Type 2</option>
-                    <option value="3">Type 3</option>
+                    <option value="3">Type 3</option> */}
 
                 </select>
             </div>
