@@ -3,10 +3,11 @@ from typing import List, Optional
 from pydantic import BaseModel, Field
 
 class ResponseProduct(BaseModel):
+    id: int = Field(..., example="")
     product_code: str = Field("", example='')
     product_name: Optional[str] = Field("", example='')
     description: Optional[str] = Field("", example='')
-    image: List[str] = Field([""], example='')
+    image: List[str] = Field([], example=[])
     quantity: Optional[int] = Field("", example='')
     price: Optional[float] = Field("", example='')
     size: List[str] = Field([], example=[])

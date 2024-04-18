@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, Query, Form, UploadFile, File, HTTPExcep
 from starlette.status import HTTP_200_OK, HTTP_500_INTERNAL_SERVER_ERROR, HTTP_400_BAD_REQUEST
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from api.base.schema import SuccessResponse, ResponseStatus, FailResponse
+from api.base.schema import SuccessResponse, ResponseStatus, FailResponse, SuccessMessage
 from api.endpoint.product.schema import ResponseListProduct, ResponseProduct
 from api.library.constant import CODE_ERROR_SERVER, TYPE_MESSAGE_RESPONSE, CODE_ERROR_INPUT
 from api.library.function import convert_image_to_base64, save_image
@@ -15,6 +15,7 @@ from api.third_party.connect import MySQLService
 from api.third_party.model.colors import Colors
 from api.third_party.model.image import ProductsImage
 from api.third_party.model.products import ProductsColor, Products
+from api.third_party.model.size import ProductsSize
 from api.third_party.query.category import get_category_by_id
 from api.third_party.query.color import get_color_info
 from api.third_party.query.product import get_all_product_paging, get_product
@@ -99,7 +100,7 @@ async def get_all_product(last_id: str = Query(""), db: AsyncSession = Depends(M
     status_code=HTTP_200_OK,
     responses=open_api_standard_responses(
         success_status_code=HTTP_200_OK,
-        success_response_model=SuccessResponse[ResponseProduct],
+        success_response_model=SuccessResponse[SuccessMessage],
         fail_response_model=FailResponse[ResponseStatus]
     )
 )
@@ -108,7 +109,7 @@ async def create_product(
         description: str = Form(""),
         quantity: str = Form(""),
         price: str = Form(""),
-        category: str = Form(""),
+        category: str = Form(...),
         list_size: List[str] = Form([]),
         list_color_code: List[str] = Form([]),
         list_image_upload: List[UploadFile] = File(None),
@@ -117,11 +118,9 @@ async def create_product(
 ):
     status_code = message = code = ""
     try:
-        print(list_color_code)
+        print(category)
         get_colors = await get_color_info(db, list_color_code)
         get_category = await get_category_by_id(category, db)
-        print(not get_colors)
-        print(get_colors and len(get_colors) == len(list_color_code))
         if not get_colors or not (get_colors and len(get_colors) == len(list_color_code)) :
             status_code = HTTP_400_BAD_REQUEST
             code = CODE_ERROR_INPUT
@@ -185,7 +184,17 @@ async def create_product(
         print(new_product.id)
         await db.execute(insert(ProductsColor).values(list_color))
         await db.commit()
-        return SuccessResponse[ResponseProduct](**new_product)
+        return SuccessResponse[SuccessMessage](**{
+            "data": {
+                "message": "Tạo thành công",
+
+            },
+            "response_status": {
+                "code": "00",
+                "type": "success",
+                "message": ""
+            }
+        })
 
 
     except:
@@ -195,7 +204,6 @@ async def create_product(
             code=code if code else CODE_ERROR_SERVER,
             message=message
         )
-    return None
 
 
 @router.get(
@@ -215,6 +223,7 @@ async def get_detail_product(product_id: str, db: AsyncSession = Depends(MySQLSe
         product = await get_product(db, product_id)
         print(product)
         product_detail = {
+            "id": product[0][0].id,
             "product_name": product[0][0].product_name,
             "description": product[0][0].description,
             "image": [],
@@ -226,7 +235,7 @@ async def get_detail_product(product_id: str, db: AsyncSession = Depends(MySQLSe
         }
         for _, img, color in product:
             string_base64 = ""
-            if img:
+            if img and img.id not in product_detail['image_id']:
                 base64_img = await convert_image_to_base64(img.image_path)
                 string_base64 = f'data:image/png;base64, {base64_img.decode()}'
                 product_detail['image'].append(string_base64)

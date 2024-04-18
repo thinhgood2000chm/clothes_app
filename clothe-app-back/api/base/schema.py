@@ -11,7 +11,8 @@ class ResponseStatus(BaseModel):
 
 TypeX = TypeVar("TypeX")
 
-
+class SuccessMessage(BaseModel):
+    message: str = Field("Tạo Thành công")
 class SuccessResponse(GenericModel, Generic[TypeX]):
     data: Optional[TypeX]
     response_status: ResponseStatus

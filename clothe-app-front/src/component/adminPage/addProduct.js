@@ -24,6 +24,7 @@ function AddProductForm() {
         var allCategory = await getListCategory()
         if(allCategory && allCategory?.data?.length>0){
             var listCategoriesOption = []
+            setProductType(allCategory?.data[0].id)
             allCategory?.data.forEach(category =>{
                 listCategoriesOption.push(
                     <option value={category.id}>{category.name}</option>
@@ -104,7 +105,7 @@ function AddProductForm() {
     }
     function addNewProd(){
         var formData = new FormData();
-        console.log(productColor,productName)
+        console.log(productColor,productName, productType)
         formData.append('list_color_code', productColor);
         formData.append('product_name', productName);
         formData.append('quantity', productQuantity);
