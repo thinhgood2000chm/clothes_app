@@ -51,6 +51,7 @@ async def get_all_category(db: AsyncSession = Depends(MySQLService().get_db)):
                 "message": ""
             }
         }
+        print(response_data)
         return SuccessResponse[List[ResponseCategory]](**response_data)
     except:
         logger.error(message, exc_info=True)
