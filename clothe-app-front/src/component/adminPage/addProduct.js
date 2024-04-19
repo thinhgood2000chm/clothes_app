@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../static/css/admin.css'
 import { createProduct } from '../../common/api/product';
 import { getListCategory } from '../../common/api/category';
+import { getListColors } from '../../common/api/colors';
 function AddProductForm() {
     const [productName, setProductName] = useState('');
     const [productColor, setProductColor] = useState([]);
@@ -15,10 +16,29 @@ function AddProductForm() {
     const [subImageUpload, setSubImagesUpload] = useState([]);
     const [sizeInputs, setsizeInputs] = useState([""]);
     const [categories, setCategories] = useState();
+    const [colorsState, setColorsState] = useState();
 
-
+    
     const addNewProduct = async (productData) =>{
         await createProduct(productData)
+    }
+    const getAllColors = async () =>{
+        var allColors = await getListColors()
+        if(allColors && allColors?.data?.length>0){
+            var listColorOption = []
+            setProductType(allColors?.data[0].id)
+            allColors?.data.forEach((color, index) =>{
+                var idColor = `c${index}`
+                var colorBackground = color?.color_code
+                console.log(colorBackground)
+                listColorOption.push(
+                    <div class="color" id = {idColor} style={{backgroundColor: colorBackground}} data-color={color.color_code} onMouseDown={setColors}></div>
+                )
+
+            })
+            
+        }
+        setColorsState(listColorOption)
     }
     const getAllCategory = async () =>{
         var allCategory = await getListCategory()
@@ -133,6 +153,7 @@ function AddProductForm() {
     
       useEffect(()=>{
         getAllCategory()
+        getAllColors()
       }, [])
     return (
         <div class="add-content-product-container">
@@ -146,12 +167,13 @@ function AddProductForm() {
             <div class="form-group">
                 <label for="productColor">Product Color:</label>
                 <div class="color-palette">
-                    <div class="color" id = "c1"style={{backgroundColor: "#ff0000"}} data-color="#ff0000" onMouseDown={setColors}></div>
+                    {colorsState}
+                    {/* <div class="color" id = "c1"style={{backgroundColor: "#ff0000"}} data-color="#ff0000" onMouseDown={setColors}></div>
                     <div class="color " id = "c2" style={{backgroundColor: "#FFA500"}} data-color="#FFA500" onMouseDown={setColors}></div>
                     <div class="color " id = "c3" style={{backgroundColor: "#0000ff"}} data-color="#0000ff"  onMouseDown={setColors}></div>
                     <div class="color " id = "c4" style={{backgroundColorr: "#ffff00"}} data-color="#ffff00"  onMouseDown={setColors}></div>
                     <div class="color " id = "c5" style={{backgroundColor: "#ff00ff"}} data-color="#ff00ff"  onMouseDown={setColors}></div>
-                    <div class="color " id = "c6" style={{backgroundColor: "#00ffff"}} data-color="#00ffff"  onMouseDown={setColors}></div>
+                    <div class="color " id = "c6" style={{backgroundColor: "#00ffff"}} data-color="#00ffff"  onMouseDown={setColors}></div> */}
                 </div>
             </div>
             <div id="inputContainer">
