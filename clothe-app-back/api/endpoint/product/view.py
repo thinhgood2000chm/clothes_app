@@ -46,8 +46,12 @@ async def get_all_product(last_id: str = Query(""), db: AsyncSession = Depends(M
         for prod, img, color, size in products_image_color:
             string_base64 = ""
             if img:
-                base64_img = await convert_image_to_base64(img.image_path)
-                string_base64 = f'data:image/png;base64, {base64_img.decode()}'
+                try:
+                    base64_img = await convert_image_to_base64(img.image_path)
+                    string_base64 = f'data:image/png;base64, {base64_img.decode()}'
+                except:
+                    logger.error(f"path {img.image_path} không tồn tại")
+                    string_base64 = f'data:image/png;base64,'
             if prod.id not in products:
                 products[prod.id] = {
                     "id": prod.id,
@@ -119,6 +123,10 @@ async def create_product(
     status_code = message = code = ""
     try:
         print(category)
+        if len(list_image_upload) > 3:
+            status_code = HTTP_400_BAD_REQUEST
+            code = CODE_ERROR_INPUT
+            message = "Ảnh phụ chỉ cho phép tối đa 3 ảnh"
         get_colors = await get_color_info(db, list_color_code)
         get_category = await get_category_by_id(category, db)
         if not get_colors or not (get_colors and len(get_colors) == len(list_color_code)) :
@@ -231,9 +239,10 @@ async def get_detail_product(product_id: str, db: AsyncSession = Depends(MySQLSe
             "price": product[0][0].price,
             "category": product[0][0].category,
             "color": [],
-            "image_id": []
+            "image_id": [],
+            "size": [],
         }
-        for _, img, color in product:
+        for _, img, color, size in product:
             string_base64 = ""
             if img and img.id not in product_detail['image_id']:
                 base64_img = await convert_image_to_base64(img.image_path)
@@ -242,6 +251,8 @@ async def get_detail_product(product_id: str, db: AsyncSession = Depends(MySQLSe
                 product_detail['image_id'].append(img.id)
             if color and color.color_code not in product_detail['color']:
                 product_detail['color'].append(color.color_code)
+            if size and size.size not in product_detail['size']:
+                product_detail['size'].append(size.size)
 
         # list_product_response = []
         #
