@@ -13,6 +13,7 @@ function ProductDetail() {
     const [mainImg, setMainImage] = useState()
     const { productId } = useParams()/* :usercode chinhs là param để khi sử dụng useParam có thể lấy ra được(phải đúng tên) trong navigate hoặc Link, ko cần truyền state*/
     const [productInfo, setProductInfo] = useState()
+    const [description, setDescription] = useState()
     const changeImage = (e) => {
         var source = e.target.getAttribute("src")
         setMainImage(source)
@@ -21,6 +22,7 @@ function ProductDetail() {
     const callApiGetDetailPoduct = async () => {
         const result = await getDetailProduct(productId);
         if (result && result?.data) {
+            setDescription(result?.data?.description)
             var list_image = []
             if (result?.data?.image.length > 0) {
                 setMainImage(result?.data?.image[0])
@@ -71,14 +73,14 @@ function ProductDetail() {
                 console.table(result.data.size)
                 setProductInfo(<div class="product__details__text">
                     <h4>Hooded thermal anorak</h4>
-                    <div class="rating">
+                    {/* <div class="rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-o"></i>
                         <span> - 5 Reviews</span>
-                    </div>
+                    </div> */}
                     <h3>$270.00 <span>70.00</span></h3>
                     <p>Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable
                         cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening
@@ -200,7 +202,8 @@ function ProductDetail() {
                                         pharetras loremos.</p> */}
                                                 <div class="product__details__tab__content__item">
                                                     <h5>Products Infomation</h5>
-                                                    <p>A Pocket PC is a handheld computer, which features many of the same
+                                                    {description}
+                                                    {/* <p>A Pocket PC is a handheld computer, which features many of the same
                                                         capabilities as a modern PC. These handy little devices allow
                                                         individuals to retrieve and store e-mail messages, create a contact
                                                         file, coordinate appointments, surf the internet, exchange text messages
@@ -212,7 +215,7 @@ function ProductDetail() {
                                                         consumers could purchase one of top-of-the-line Pocket PCs in 2003.
                                                         These days, customers are finding that prices have become much more
                                                         reasonable now that the newness is wearing off. For approximately
-                                                        $350.00, a new Pocket PC can now be purchased.</p>
+                                                        $350.00, a new Pocket PC can now be purchased.</p> */}
                                                 </div>
                                                 <div class="product__details__tab__content__item">
                                                     <h5>Material used</h5>

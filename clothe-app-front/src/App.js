@@ -2,6 +2,7 @@ import './App.css';
 import Home from '../src/component/homepage/home'
 import Product from '../src/component/homepage/product'
 import Login from '../src/component/loginpage/login'
+import AboutUs from '../src/component/homepage/aboutus'
 import ProductDetail from '../src/component/homepage/prodcutDetail'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, {Fragment } from 'react';
@@ -30,6 +31,7 @@ function App() {
 
                     <Route path='/' element={<Home/>} />
                     <Route path='/product' element={<Product/>} />
+                    <Route path='/about-us' element={<AboutUs/>} />
                     <Route path='/product-detail/:productId' element={<ProductDetail/>} />
 
                   </Route>

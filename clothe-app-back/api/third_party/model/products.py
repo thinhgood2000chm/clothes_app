@@ -12,7 +12,7 @@ class Products(BaseModel):
     id = Column(BigInteger, primary_key=True, index=True)
     # product_code = Column(String(100), nullable=False)
     product_name = Column(String(500), nullable=False)
-    description = Column(String(500), nullable=True)
+    description = Column(String(1000), nullable=True)
     quantity = Column(Integer, nullable=False, default=0)
     price = Column(Float, nullable=False, default=0)
 

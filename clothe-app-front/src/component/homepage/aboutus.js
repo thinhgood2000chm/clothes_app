@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import image1 from "../../static/img/icon/heart.png"
 
 function AboutUs() {
-retrun (
+return (
     <>
     <section class="breadcrumb-option">
         <div class="container">
@@ -207,3 +207,5 @@ retrun (
     </>
 )
 }
+
+export default AboutUs

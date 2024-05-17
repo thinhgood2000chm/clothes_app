@@ -43,9 +43,10 @@ function Header() {
                         <ul>
                             <li><Link to='/' >Trang chủ</Link></li>
                             <li><Link to='/product' >Sản phẩm</Link></li>
+                            <li><Link to="/about-us">Về chúng tôi</Link></li>
                             {/* <li><a href="#">Pages</a>
                                 <ul className="dropdown">
-                                    <li><a href="./about.html">About Us</a></li>
+                        
                                     <li><a href="./shop-details.html">Shop Details</a></li>
                                     <li><a href="./shopping-cart.html">Shopping Cart</a></li>
                                     <li><a href="./checkout.html">Check Out</a></li>
@@ -101,6 +102,7 @@ function Header() {
                                 <ul>
                                     <li><Link to='/' >Trang chủ</Link></li>
                                     <li><Link to='/product' >Sản phẩm</Link></li>
+                                    <li><Link to="/about-us">Về chúng tôi</Link></li>
                                     {/* <li><a href="#">Pages</a>
                                         <ul className="dropdown">
                                             <li><a href="./about.html">About Us</a></li>
