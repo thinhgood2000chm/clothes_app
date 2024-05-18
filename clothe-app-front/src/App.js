@@ -3,6 +3,7 @@ import Home from '../src/component/homepage/home'
 import Product from '../src/component/homepage/product'
 import Login from '../src/component/loginpage/login'
 import AboutUs from '../src/component/homepage/aboutus'
+import Contact from '../src/component/homepage/contact'
 import ProductDetail from '../src/component/homepage/prodcutDetail'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, {Fragment } from 'react';
@@ -30,10 +31,10 @@ function App() {
                   <Route element = {<Layout/>}>
 
                     <Route path='/' element={<Home/>} />
+                    <Route path='/contacts' element={<Contact/>} />
                     <Route path='/product' element={<Product/>} />
                     <Route path='/about-us' element={<AboutUs/>} />
-                    <Route path='/product-detail/:productId' element={<ProductDetail/>} />
-
+                    <Route path='/product-detail/:productId' element={<ProductDetail/>} />                   
                   </Route>
 
                   {/* <Route element={<PrivateRoute currUserInfo={currUserInfo} setCurrUserInfo={setCurrUserInfo} />}>
