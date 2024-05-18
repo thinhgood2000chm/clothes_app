@@ -16,11 +16,12 @@ function Header() {
     return (
         <>
             {/* <div className="offcanvas-menu-overlay active"></div> */}
+            {/* chỗ này dùng để responseive khi thu nhỏ trên header*/}
             <div className={activeclassName}>
                 <div className="offcanvas__option">
                     <div className="offcanvas__links">
-                        <a href="#">Đăng kí</a>
-                        <a href="#">Đăng nhập</a>
+                        <Link to="/register">Đăng kí</Link>
+                        <Link to="/login">Đăng nhập</Link>
                     </div>
                     <div className="offcanvas__top__hover">
                         <span>VND <i className="arrow_carrot-down"></i></span>
@@ -42,9 +43,10 @@ function Header() {
                         <ul>
                             <li><Link to='/' >Trang chủ</Link></li>
                             <li><Link to='/product' >Sản phẩm</Link></li>
+                            <li><Link to="/about-us">Về chúng tôi</Link></li>
                             {/* <li><a href="#">Pages</a>
                                 <ul className="dropdown">
-                                    <li><a href="./about.html">About Us</a></li>
+                        
                                     <li><a href="./shop-details.html">Shop Details</a></li>
                                     <li><a href="./shopping-cart.html">Shopping Cart</a></li>
                                     <li><a href="./checkout.html">Check Out</a></li>
@@ -73,8 +75,8 @@ function Header() {
                             <div className="col-lg-6 col-md-5">
                                 <div className="header__top__right">
                                     <div className="header__top__links">
-                                        <a href="#">Đăng kí</a>
-                                        <a href="#">Đăng nhập</a>
+                                        <Link to="/register">Đăng kí</Link>
+                                        <Link to="/login">Đăng nhập</Link>
                                     </div>
                                     <div className="header__top__hover">
                                         <span>VND <i className="arrow_carrot-down"></i></span>
@@ -100,6 +102,7 @@ function Header() {
                                 <ul>
                                     <li><Link to='/' >Trang chủ</Link></li>
                                     <li><Link to='/product' >Sản phẩm</Link></li>
+                                    <li><Link to="/about-us">Về chúng tôi</Link></li>
                                     {/* <li><a href="#">Pages</a>
                                         <ul className="dropdown">
                                             <li><a href="./about.html">About Us</a></li>

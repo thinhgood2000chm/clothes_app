@@ -41,7 +41,6 @@ async def get_all_category(db: AsyncSession = Depends(MySQLService().get_db)):
                 "id": category.id,
                 "name": category.name
             })
-            print(category.name)
 
         response_data = {
             "data": list_data_response,

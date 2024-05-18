@@ -57,4 +57,48 @@ async function getDetailProduct(productId){
         throw error;
         }
     }
-    export {getListProduct, getDetailProduct}
+
+
+
+
+async function createProduct(productData){
+try {
+
+    var url = `${BASE_URL}product`
+    
+    const response = await fetch(url, 
+        {
+            method: 'POST',
+            headers: {
+                // 'Authorization': `Bearer ${token}`
+            },
+            body: productData
+        }
+    )
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+    } catch (error) {
+    console.error('Error fetching data:', error.message);
+    throw error;
+    }
+}
+export {getListProduct, getDetailProduct, createProduct}
+
+
+
+
+// var formData = new FormData();
+// formData.append('content', textPost);
+// if(postImages?.length > 0 ){
+//     postImages.forEach((image, index) => {
+//         formData.append(`images_upload`, image);
+//       });
+// }
+// formData.append('video_upload', postVideo);
+// setOnLoading(true)
+// callApiCreateNewPost(formData)

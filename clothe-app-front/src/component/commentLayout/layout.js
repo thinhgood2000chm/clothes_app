@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Header from "./header";
 import { Link } from 'react-router-dom';
-// import Footer from "./Footer";
+import Footer from "./footer";
 
 const Layout = () => {
   return (
     <div>
       <Header />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

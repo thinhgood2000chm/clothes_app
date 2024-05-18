@@ -24,6 +24,16 @@ function ListProduct() {
 			var listProduct = []
 			if (productsResponse && productsResponse?.data?.list_product.length > 0) {
 				productsResponse?.data?.list_product.forEach(product => {
+					if (product?.color?.length > 0){
+						var list_product_color = []
+						product?.color.forEach(color=> {
+							list_product_color.push(
+							<label  style={{ backgroundColor: color }} for="">
+								<input type="radio"/>
+							</label>
+							)
+							})
+					}
 					listProduct.push(
 					<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
 						<div class="product__item" >
@@ -48,11 +58,12 @@ function ListProduct() {
 								</div>
 								<h5>{product.price}</h5>
 								<div class="product__color__select">
-								{product?.color.forEach(color=> {
-								<label  style={{ "backgroundColor": {color} }} for="">
+								{list_product_color}
+								{/* {product?.color.forEach(color=> {
+								<label  style={{ backgroundColor: color }} for="">
 									<input type="radio"/>
 								</label>
-								})}
+								})} */}
 						
 			
 								</div>

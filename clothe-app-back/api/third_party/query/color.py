@@ -5,6 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.third_party.model.colors import Colors
 
+
 async def get_color_info(db: AsyncSession, list_color_code: List):
     color_engine = await db.execute(
         select(
@@ -13,6 +14,14 @@ async def get_color_info(db: AsyncSession, list_color_code: List):
             Colors.color_code.in_(list_color_code)
         )
 
+    )
+    colors = color_engine.scalars().all()
+    return colors
+
+
+async def get_colors(db: AsyncSession):
+    color_engine = await db.execute(
+        select(Colors)
     )
     colors = color_engine.scalars().all()
     return colors
