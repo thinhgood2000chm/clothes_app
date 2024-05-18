@@ -1,6 +1,6 @@
 import {React, useState } from 'react';
 import { Link } from 'react-router-dom';
-import image1 from "../../static/img/icon/heart.png"
+import aboutUsImg from "../../static/img/about/about-us.jpg"
 
 function AboutUs() {
 return (
@@ -10,10 +10,10 @@ return (
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__text">
-                        <h4>About Us</h4>
+                        <h4>Về chúng tôi</h4>
                         <div class="breadcrumb__links">
-                            <a href="./index.html">Home</a>
-                            <span>About Us</span>
+                            <span><Link to='/' >Trang chủ</Link></span>
+                            <span>Về chúng tôi</span>
                         </div>
                     </div>
                 </div>
@@ -26,37 +26,52 @@ return (
             <div class="row">
                 <div class="col-lg-12">
                     <div class="about__pic">
-                        <img src="img/about/about-us.jpg" alt=""/>
+                        <img src={aboutUsImg} alt=""  style={{ width: "936px", height: "472px"}} />
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
+            {/* <div class="row"> */}
+                {/* <div class="col-lg-4 col-md-4 col-sm-6"> */}
                     <div class="about__item">
-                        <h4>Who We Are ?</h4>
-                        <p>Contextual advertising programs sometimes have strict policies that need to be adhered too.
-                        Let’s take Google as an example.</p>
+                    <h4 class="about__item__content">Chúng tôi là ai ?</h4>
+                        <p>- Chúng tôi là <b>xưởng May Thịnh Khoa </b>- tự hào là đơn vị hàng đầu trong lĩnh vực sản xuất và cung cấp các sản phẩm may mặc chất lượng cao.</p>
+                        <p>- Với đội ngũ nhân viên tay nghề cao và quy trình sản xuất hiện đại, chúng tôi cam kết mang đến những sản phẩm hoàn hảo và dịch vụ tận tâm nhất cho khách hàng.</p>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="about__item">
-                        <h4>Who We Do ?</h4>
+                {/* </div> */}
+                {/* <div class="col-lg-4 col-md-4 col-sm-6"> */}
+
+                    {/* <div class="about__item">
+                    <h4 class="about__item__content">Who We Do ?</h4>
                         <p>In this digital generation where information can be easily obtained within seconds, business
                         cards still have retained their importance.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
+                    </div> */}
+
+                {/* </div> */}
+                {/* <div class="col-lg-4 col-md-4 col-sm-6"> */}
                     <div class="about__item">
-                        <h4>Why Choose Us</h4>
-                        <p>A two or three storey house is the ideal way to maximise the piece of earth on which our home
-                        sits, but for older or infirm people.</p>
+                        <h4 class="about__item__content">Vì sao nên chọn chúng tôi ?</h4>
+                        <div class = "content_about_us">
+                        <p>- Chất lượng vượt trội: luôn chú trọng đến chất lượng sản phẩm, từ khâu chọn nguyên liệu đến từng đường kim mũi chỉ, đảm bảo mỗi sản phẩm đều đạt tiêu chuẩn cao nhất.</p>
+
+                        <p>-  Đội ngũ chuyên nghiệp: Chúng tôi với hơn 20 năm kinh nghiệm trong lĩnh vực may mặc, sẵn sàng đáp ứng mọi yêu cầu khắt khe của khách hàng.</p>
+
+                        <p>-  Công nghệ hiện đại: Áp dụng các công nghệ và quy trình sản xuất tiên tiến, chúng tôi đảm bảo sự chính xác và hiệu quả trong từng sản phẩm.</p>
+
+                        <p>- Giá cả cạnh tranh: Xưởng May Thịnh Khoa cung cấp sản phẩm với mức giá hợp lý, cạnh tranh trên thị trường, giúp khách hàng tiết kiệm chi phí mà vẫn nhận được sản phẩm chất lượng.</p>
+
+                        <p>- Dịch vụ tận tâm: Chúng tôi cam kết mang đến dịch vụ khách hàng tốt nhất, từ khâu tư vấn, hỗ trợ thiết kế đến hậu mãi, luôn lắng nghe và đáp ứng mọi nhu cầu của khách hàng.</p>
+
+                        <p>- Đa dạng sản phẩm: Với nhiều năm kinh nghiệm, chúng tôi cung cấp đa dạng các loại sản phẩm may mặc phù hợp với nhiều nhu cầu và phong cách khác nhau, đảm bảo khách hàng luôn tìm thấy những gì họ cần.</p>
+
+                        <p>  Lựa chọn Xưởng May Thịnh Khoa, bạn sẽ hoàn toàn yên tâm về chất lượng và dịch vụ mà chúng tôi mang lại.</p>
+                        </div>
                     </div>
-                </div>
-            </div>
+                {/* </div> */}
+            {/* </div> */}
         </div>
     </section>
 
-    <section class="testimonial">
+    {/* <section class="testimonial">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 p-0">
@@ -203,8 +218,8 @@ return (
                 </div>
             </div>
         </div>
-    </section>
-    </>
+    </section>*/}
+    </> 
 )
 }
 
