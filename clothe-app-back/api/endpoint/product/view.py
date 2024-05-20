@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends, Query, Form, UploadFile, File, HTTPExcep
 from starlette.status import HTTP_200_OK, HTTP_500_INTERNAL_SERVER_ERROR, HTTP_400_BAD_REQUEST
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from api.base.author import get_current_user
 from api.base.schema import SuccessResponse, ResponseStatus, FailResponse, SuccessMessage
 from api.endpoint.product.schema import ResponseListProduct, ResponseProduct
 from api.library.constant import CODE_ERROR_SERVER, TYPE_MESSAGE_RESPONSE, CODE_ERROR_INPUT
@@ -118,7 +119,8 @@ async def create_product(
         list_color_code: List[str] = Form([]),
         list_image_upload: List[UploadFile] = File(None),
         main_image_upload: UploadFile = File(None),
-        db: AsyncSession = Depends(MySQLService().get_db)
+        db: AsyncSession = Depends(MySQLService().get_db),
+        user: dict = Depends(get_current_user)
 ):
     status_code = message = code = ""
     try:
