@@ -11,10 +11,9 @@ import image1 from "../../static/img/icon/heart.png"
 // import image1 from "D:/seatech/ekyc_ui/folder_image_save/48bcfb4d-1ca4-412a-b313-28841e379c27.png"
 import compareIcom from "../../static/img/icon/compare.png"
 import searchIcon from "../../static/img/icon/search.png"
-import product from "../../static/img/product/product-3.jpg"
-import banner1 from "../../static/img/banner/banner-1.jpg"
-import banner2 from "../../static/img/banner/banner-2.jpg"
-import banner3 from "../../static/img/banner/banner-3.jpg"
+import banner4 from "../../static/img/banner/banner-4.jpg"
+import banner5 from "../../static/img/banner/banner-5.jpg"
+import banner6 from "../../static/img/banner/banner-6.jpg"
 import hero1 from "../../static/img/hero/hero-1.jpg"
 import hero2 from "../../static/img/hero/hero-2.jpg"
 import { Link } from 'react-router-dom';
@@ -140,10 +139,10 @@ function Home() {
 						<div class="col-lg-7 offset-lg-4">
 							<div class="banner__item">
 								<div class="banner__item__pic">
-									<img src={banner1} alt="" />
+									<img src={banner4} alt="" style={{width:"440px", height:"440px"}}/>
 								</div>
 								<div class="banner__item__text">
-									<h2>Mãu áo Phú Quốc</h2>
+									<h2>Mẫu áo Phú Quốc</h2>
 									<a href="#">Đặt ngay</a>
 								</div>
 							</div>
@@ -151,7 +150,7 @@ function Home() {
 						<div class="col-lg-5">
 							<div class="banner__item banner__item--middle">
 								<div class="banner__item__pic">
-									<img src={banner2} alt="" />
+								<img src={banner5} alt="" style={{width:"440px", height:"440px"}}/>
 								</div>
 								<div class="banner__item__text">
 									<h2>Mẫu áo Nha Trang</h2>
@@ -162,10 +161,10 @@ function Home() {
 						<div class="col-lg-7">
 							<div class="banner__item banner__item--last">
 								<div class="banner__item__pic">
-									<img src={banner3} walt="" />
+									<img src={banner6} alt="" style={{width:"440px", height:"440px"}}/>
 								</div>
 								<div class="banner__item__text">
-									<h2>Áo trẻ em</h2>
+									<h2>Mẫu áo hot</h2>
 									<a href="#">Đặt ngay</a>
 								</div>
 							</div>
