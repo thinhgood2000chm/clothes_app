@@ -8,14 +8,15 @@ from starlette.status import HTTP_403_FORBIDDEN
 
 from api.library.constant import CODE_TOKEN_NOT_VALID
 from api.third_party.connect import MySQLService
+from api.third_party.model.users import Users
 from api.third_party.query.user import get_user_by_code
 from setting.init_project import http_exception, config_system
 
 
 # Tạo JWT token chứa thông tin xác thực user để trả về cho client
-async def create_access_token(username: str) -> str:
-    expire = datetime.utcnow() + timedelta(minutes=config_system['EXPIRES_TIME'])
-    encode_data = {"exp": expire, "sub": str(username)}
+async def create_access_token(user) -> str:
+    expire = datetime.utcnow() + timedelta(minutes=int(config_system['EXPIRES_TIME']))
+    encode_data = {"exp": expire, "sub": str(user.user_code)}
     encoded_jwt = jwt.encode(encode_data, config_system['JWT_SECRET_KEY'], algorithm=config_system["ALGORITHM"])
     return encoded_jwt
 

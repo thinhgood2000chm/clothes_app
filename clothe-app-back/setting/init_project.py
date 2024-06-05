@@ -19,6 +19,9 @@ config_system = {
     "DB_HOST": dotenv_values.get("DB_HOST", ""),
     "DB_SCHEMA": dotenv_values.get("DB_SCHEMA", ""),
     "PATH_SAVE_IMAGE": dotenv_values.get("PATH_SAVE_IMAGE", ""),
+    "EXPIRES_TIME": dotenv_values.get("EXPIRES_TIME", 60),
+    "JWT_SECRET_KEY": dotenv_values.get("JWT_SECRET_KEY", ""),
+    "ALGORITHM": dotenv_values.get("ALGORITHM", ""),
 }
 
 
