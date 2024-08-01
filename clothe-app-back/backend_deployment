@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thinhnx-backend-deployment
+  namespace: thinhnx
+  labels:
+    app: backend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-deployment
+  template:
+    metadata:
+      labels:
+        app: backend-deployment
+    spec:
+      containers:
+        - name: backend-deployment-container
+          image: thinhnx75/clothes_backend
+          ports:
+            - containerPort: 8999
+          envFrom:
+            - configMapRef:
+                name: data-thinhnx-env
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: data-thinhnx-env
+  namespace: thinhnx
+data: 
+  DB_USER: thinhnx
+  DB_NAME: mysql
+  DB_PASSWORD: "1234"
+  DB_HOST: "192.168.1.195:31721"
+  DB_SCHEMA: clothes
+  PROJECT_NAME: CLOTHES
+  VERSION: "1.0.0"
+
+  PATH_SAVE_IMAGE: /root/
+  
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: thinhnx-clothes-service
+  namespace: thinhnx
+spec:
+  selector:
+    app: backend-deployment
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8999
+      targetPort: 8999
+  type: NodePort    
