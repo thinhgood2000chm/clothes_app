@@ -7,6 +7,7 @@ import '../../static/css/style.css'
 
 import Accordion from 'react-bootstrap/Accordion'
 import ListProduct from "./listProduct.js"
+import ListCategory from "./category.js"
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState, useContext } from "react";
 function Product(props) {
@@ -52,7 +53,7 @@ function Product(props) {
                                                     <Accordion.Header><strong>Loại sản phẩm</strong></Accordion.Header>
                                                     <Accordion.Body>
                                                         <div id="collapseOne" className="collapse show" data-parent="#accordionExample">
-                                                            <div className="card-body">
+                                                            {/* <div className="card-body">
                                                                 <div className="shop__sidebar__categories">
                                                                     <ul className="nice-scroll">
                                                                         <li><a href="#">Men (20)</a></li>
@@ -66,7 +67,8 @@ function Product(props) {
                                                                         <li><a href="#">Kids (20)</a></li>
                                                                     </ul>
                                                                 </div>
-                                                            </div>
+                                                            </div> */}
+                                                            {<ListCategory/>}
                                                         </div>
                                                     </Accordion.Body>
                                                 </div>
