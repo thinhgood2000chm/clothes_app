@@ -10,7 +10,7 @@ async def get_user_by_code(db: AsyncSession, user_code):
             Users.user_code == user_code
         )
     )
-    return user
+    return user.scalar()
 
 
 async def get_login_user(db: AsyncSession, user_code, password ):
