@@ -38,7 +38,12 @@ router = APIRouter()
         fail_response_model=FailResponse[ResponseStatus]
     )
 )
-async def get_all_product(last_id: str = Query(""), db: AsyncSession = Depends(MySQLService().get_db)):
+async def get_all_product(
+        color: str = Query(""),
+        category: str = Query(""),
+        size: str = Query(""),
+        last_id: str = Query(""),
+        db: AsyncSession = Depends(MySQLService().get_db)):
     code = message = status_code = ''
     try:
         products_image_color = await get_all_product_paging(db, last_id)
@@ -119,8 +124,9 @@ async def create_product(
         list_color_code: List[str] = Form([]),
         list_image_upload: List[UploadFile] = File(None),
         main_image_upload: UploadFile = File(None),
+        user: dict = Depends(get_current_user),
         db: AsyncSession = Depends(MySQLService().get_db),
-        user: dict = Depends(get_current_user)
+
 ):
     status_code = message = code = ""
     try:
@@ -191,7 +197,6 @@ async def create_product(
             "product_id": new_product.id,
             "color_id": color.id
         } for color in get_colors]
-        print(new_product.id)
         await db.execute(insert(ProductsColor).values(list_color))
         await db.commit()
         return SuccessResponse[SuccessMessage](**{

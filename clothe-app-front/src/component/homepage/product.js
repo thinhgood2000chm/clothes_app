@@ -8,6 +8,7 @@ import '../../static/css/style.css'
 import Accordion from 'react-bootstrap/Accordion'
 import ListProduct from "./listProduct.js"
 import ListCategory from "./category.js"
+import ListColors from "./colors.js"
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState, useContext } from "react";
 function Product(props) {
@@ -53,21 +54,6 @@ function Product(props) {
                                                     <Accordion.Header><strong>Loại sản phẩm</strong></Accordion.Header>
                                                     <Accordion.Body>
                                                         <div id="collapseOne" className="collapse show" data-parent="#accordionExample">
-                                                            {/* <div className="card-body">
-                                                                <div className="shop__sidebar__categories">
-                                                                    <ul className="nice-scroll">
-                                                                        <li><a href="#">Men (20)</a></li>
-                                                                        <li><a href="#">Women (20)</a></li>
-                                                                        <li><a href="#">Bags (20)</a></li>
-                                                                        <li><a href="#">Clothing (20)</a></li>
-                                                                        <li><a href="#">Shoes (20)</a></li>
-                                                                        <li><a href="#">Accessories (20)</a></li>
-                                                                        <li><a href="#">Kids (20)</a></li>
-                                                                        <li><a href="#">Kids (20)</a></li>
-                                                                        <li><a href="#">Kids (20)</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div> */}
                                                             {<ListCategory/>}
                                                         </div>
                                                     </Accordion.Body>
@@ -148,7 +134,7 @@ function Product(props) {
                                         <Accordion.Header><strong>Màu sắc</strong></Accordion.Header>
                                         <Accordion.Body>
                                         <div id="collapseFive" className="collapse show" data-parent="#accordionExample">
-                                            <div className="card-body">
+                                            {/* <div className="card-body">
                                                 <div className="shop__sidebar__color">
                                                     <label className="c-1" for="sp-1">
                                                         <input type="radio" id="sp-1" />
@@ -178,7 +164,8 @@ function Product(props) {
                                                         <input type="radio" id="sp-9" />
                                                     </label>
                                                 </div>
-                                            </div>
+                                            </div> */}
+                                            {<ListColors/>}
                                         </div>
                                         </Accordion.Body>
                                     </div>

@@ -61,16 +61,16 @@ async function getDetailProduct(productId){
 
 
 
-async function createProduct(productData){
+async function createProduct(token, productData){
 try {
 
     var url = `${BASE_URL}product`
-    
+    console.log(url)
     const response = await fetch(url, 
         {
             method: 'POST',
             headers: {
-                // 'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`
             },
             body: productData
         }
