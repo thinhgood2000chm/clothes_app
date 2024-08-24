@@ -35,12 +35,12 @@ function AddProductForm() {
         // <PopupCustom && PopupCustom showStatus={true}/>
         // console.log("dsfdfdf")
         // <PopupCustom message={"1231232"}/>
-        setShowmodelSuccess(true)
-        setMessage("Lư thông tyin thành công")
-        // const result = await createProduct(token, productData)
-        // if(result){
-        //     setShowmodelSuccess(true)
-        // }
+ 
+        const result = await createProduct(token, productData)
+        if(result){
+            setShowmodelSuccess(true)
+            setMessage(result?.data?.message)
+        }
     }
     const getAllColors = async () => {
         var allColors = await getListColors()
@@ -146,18 +146,26 @@ function AddProductForm() {
     function addNewProd() {
         var formData = new FormData();
         console.log(productColor, productName, productType)
-        formData.append('list_color_code', productColor);
         formData.append('product_name', productName);
         formData.append('quantity', productQuantity);
         formData.append('price', productPrice);
         formData.append('category', productType);
         formData.append('description', productDescription);
         formData.append('main_image_upload', mainImageUpload);
-        formData.append('list_size', sizeInputs)
 
         if (subImageUpload?.length > 0) {
             subImageUpload.forEach((image, index) => {
                 formData.append(`list_image_upload`, image);
+            });
+        }
+        if (productColor?.length > 0) {
+            productColor.forEach((color, index) => {
+                formData.append(`list_color_code`, color);
+            });
+        }
+        if (sizeInputs?.length > 0) {
+            sizeInputs.forEach((size, index) => {
+                formData.append(`list_size`, size);
             });
         }
 

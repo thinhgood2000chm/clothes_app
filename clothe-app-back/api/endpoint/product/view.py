@@ -130,14 +130,13 @@ async def create_product(
 ):
     status_code = message = code = ""
     try:
-        print(category)
-        if len(list_image_upload) > 3:
+        if list_image_upload is not None and len(list_image_upload) > 3:
             status_code = HTTP_400_BAD_REQUEST
             code = CODE_ERROR_INPUT
             message = "Ảnh phụ chỉ cho phép tối đa 3 ảnh"
         get_colors = await get_color_info(db, list_color_code)
         get_category = await get_category_by_id(category, db)
-        if not get_colors or not (get_colors and len(get_colors) == len(list_color_code)) :
+        if not get_colors or not (get_colors and len(get_colors) == len(list_color_code)):
             status_code = HTTP_400_BAD_REQUEST
             code = CODE_ERROR_INPUT
             message = "color không tồn tại"

@@ -70,6 +70,7 @@ try {
         {
             method: 'POST',
             headers: {
+                // 'Content-type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}`
             },
             body: productData
