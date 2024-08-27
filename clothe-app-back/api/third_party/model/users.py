@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, BigInteger
+from sqlalchemy import Column, String, BigInteger, Integer
 
 from api.third_party.model.base import BaseModel
 
@@ -11,3 +11,4 @@ class Users(BaseModel):
     email = Column(String(500), nullable=False)
     phone = Column(String(500), nullable=False)
     password = Column(String(500), nullable=False)
+    role = Column(Integer)

@@ -235,7 +235,6 @@ async def get_detail_product(product_id: str, db: AsyncSession = Depends(MySQLSe
     code = message = status_code = ''
     try:
         product = await get_product(db, product_id)
-        print(product)
         product_detail = {
             "id": product[0][0].id,
             "product_name": product[0][0].product_name,
