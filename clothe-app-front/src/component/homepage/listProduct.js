@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom';
 function ListProduct() {
     const [productInfo, setProductInfo] = useState()
-	const [lastProductId, setLastProductId] = useState()
+	const [lastProductId, setLastProductId] = useState("")
+	const [isStillHaveProductForLoad, SetIsStillHaveProductForLoad] = useState(true)
 	const navigate = useNavigate()
 
 	function getDetail(e){
@@ -20,8 +21,9 @@ function ListProduct() {
 
 	const products = async () => {
 		try {
-			const productsResponse = await getListProduct();
+			const productsResponse = await getListProduct(lastProductId);
 			var listProduct = []
+			setLastProductId(productsResponse?.data?.last_id)
 			if (productsResponse && productsResponse?.data?.list_product.length > 0) {
 				productsResponse?.data?.list_product.forEach(product => {
 					if (product?.color?.length > 0){
@@ -72,10 +74,20 @@ function ListProduct() {
 					</div>
 					)
 				})
+				if (lastProductId)
+					setProductInfo([...productInfo, ...listProduct])
+				else{
+					setProductInfo(listProduct)
+				}
+			}
+			else{
+				if (productInfo){
+					SetIsStillHaveProductForLoad(false)
+				}
+
 			}
 			console.log("sadfdf")
-			setProductInfo(listProduct)
-
+	
 
 		} catch (error) {
 			console.error(error)
@@ -84,12 +96,18 @@ function ListProduct() {
 	useEffect(() => {
 		products()
 	}, [])
-	return (
-
-                    <div class="row">
-                 
+	return (<>
+                    <div class="row">            
                  {productInfo}
                     </div>
+					{ window.location.href.includes('/product') && isStillHaveProductForLoad === true &&		
+					    <div className="row">
+						  <div className="col-lg-12">
+						  <center><button type="button" class="btn btn-outline-info" onClick={products}><b>Xem thêm sản phẩm</b></button></center>
+						  </div>
+					  </div>
+					}
+					  </>
     )}
 
 

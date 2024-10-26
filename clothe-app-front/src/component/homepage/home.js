@@ -142,7 +142,7 @@ function Home() {
 									<img src={banner4} alt="" style={{width:"440px", height:"440px"}}/>
 								</div>
 								<div class="banner__item__text">
-									<h2>Mẫu áo Phú Quốc</h2>
+									<h2>Mẫu áo trơn</h2>
 									<a href="#">Đặt ngay</a>
 								</div>
 							</div>
@@ -153,7 +153,7 @@ function Home() {
 								<img src={banner5} alt="" style={{width:"440px", height:"440px"}}/>
 								</div>
 								<div class="banner__item__text">
-									<h2>Mẫu áo Nha Trang</h2>
+									<h2>Mẫu áo in theo yêu cầu</h2>
 									<a href="#">Đặt ngay</a>
 								</div>
 							</div>
@@ -164,7 +164,7 @@ function Home() {
 									<img src={banner6} alt="" style={{width:"440px", height:"440px"}}/>
 								</div>
 								<div class="banner__item__text">
-									<h2>Mẫu áo hot</h2>
+									<h2>Mẫu áo đồng phục</h2>
 									<a href="#">Đặt ngay</a>
 								</div>
 							</div>
@@ -178,9 +178,9 @@ function Home() {
 					<div class="row">
 						<div class="col-lg-12">
 							<ul class="filter__controls">
-								<li class="active" data-filter="*">Bán chạy nhất</li>
-								<li data-filter=".new-arrivals">Hàng mới</li>
-								<li data-filter=".hot-sales">Sản phẩm giảm giá</li>
+								<li class="active" data-filter="*">Sản phẩm</li>
+								{/* <li data-filter=".new-arrivals">Hàng mới</li>
+								<li data-filter=".hot-sales">Sản phẩm giảm giá</li> */}
 							</ul>
 						</div>
 					</div>
@@ -188,6 +188,7 @@ function Home() {
 						{<ListProduct/>}
 					
 					</div>
+					<div><center><button type="button" class="btn btn-outline-info" ><Link to='/product' ><b>Xem thêm sản phẩm</b></Link></button></center></div>
 				</div>
 			</section>
 			

@@ -12,6 +12,9 @@ import ListColors from "./colors.js"
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState, useContext } from "react";
 function Product(props) {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
     return (
         <div>
             <section className="breadcrumb-option">
@@ -346,17 +349,6 @@ function Product(props) {
                             </div>
                         </div>
                         {<ListProduct />}
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="product__pagination">
-                                    <a className="active" href="#">1</a>
-                                    <a href="#">2</a>
-                                    <a href="#">3</a>
-                                    <span>...</span>
-                                    <a href="#">21</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
         </div>
