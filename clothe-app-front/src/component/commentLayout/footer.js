@@ -1,25 +1,26 @@
 import {React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import image1 from "../../static/img/icon/heart.png"
+import logo from '../../static/img/logo/logo-color.png'
 
 function Footer() {
     return (
         <footer class="footer">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-5">
+						<div class="col-lg-4">
 							<div class="footer__about">
 								<div class="footer__logo">
-									<a href="#"><img src="img/footer-logo.png" alt="" /></a>
+									<img src={logo} style={{width:"196px", height:"196px"}} alt="" />
 								</div>
-								<h3 style={{ color: "white" }} >Xưởng may Thịnh Khoa.</h3>
+								<h3 style={{textAlign:"center", color: "white" }} >Xưởng may Thịnh Khoa.</h3>
 								<a href="#"><img src="img/payment.png" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-lg-4">
 							<div class="footer__widget">
 								<h6>Cung cấp sỉ lẻ các loại quần áo</h6>
-								<ul>
+								<ul style={{display:"inline-block"}}> 
 									<li style={{ color: "white" }}>Áo trơn</li>
 									<li style={{ color: "white" }}>Áo in sẵn </li>
 									<li style={{ color: "white" }}> Đồng phục học sinh, sinh viên</li>
@@ -27,7 +28,7 @@ function Footer() {
 								</ul>
 							</div>
 						</div>
-						<div class="col-lg-3">
+						<div class="col-lg-4">
 							<div class="footer__widget">
 								<h6>Liên hệ</h6>
 								<ul>
