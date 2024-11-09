@@ -17,4 +17,4 @@ CODE_ERROR_USER_EXIST: "User đã tồn tại",
 }
 
 
-LIMIT_PAGING = 30
+LIMIT_PAGING = 8
