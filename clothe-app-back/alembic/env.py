@@ -10,9 +10,11 @@ from alembic import context
 from setting.init_project import config_system
 from api.third_party.model.base import BaseModel
 from api.third_party.model.colors import Colors
+from api.third_party.model.products import ProductsColor
 from api.third_party.model.users import Users
 from api.third_party.model.products import Products
 from api.third_party.model.image import ProductsImage
+from api.third_party.model.category import Categories
 from api.third_party.model.size import ProductsSize
 
 config = context.config
