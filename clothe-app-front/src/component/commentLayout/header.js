@@ -1,7 +1,7 @@
 import {React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import image1 from "../../static/img/icon/heart.png"
-import logo from '../../static/img/logo/logo-no-background.png'
+import logo from '../../static/img/logo/logo-no-background.jpg'
 function Header() {
     const [activeclassName, setActivateclassName] = useState("offcanvas-menu-wrapper")
     function clickOpenCanvasHeader(){
