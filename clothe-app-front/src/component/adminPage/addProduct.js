@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import {useParams, useNavigate } from 'react-router-dom';
 import '../../static/css/admin.css'
 import { createProduct } from '../../common/api/product';
 import { getListCategory } from '../../common/api/category';
 import { getListColors } from '../../common/api/colors';
+import {getCookieToken} from '../../common/function'
+import PopupCustom from '../commentLayout/popupCustom'
+import Popup from 'reactjs-popup';
 function AddProductForm() {
     const [productName, setProductName] = useState('');
     const [productColor, setProductColor] = useState([]);
@@ -18,9 +22,25 @@ function AddProductForm() {
     const [categories, setCategories] = useState();
     const [colorsState, setColorsState] = useState();
 
+    const token = getCookieToken()
+    console.log(token)
+    const { close } = useParams()
+    const [showmodelSuccess, setShowmodelSuccess] = useState()
+    const [message, setMessage] = useState()
+
 
     const addNewProduct = async (productData) => {
-        await createProduct(productData)
+
+        // {toast && <PopupCustom message={toast} onClose={() => setToast(null)} />}
+        // <PopupCustom && PopupCustom showStatus={true}/>
+        // console.log("dsfdfdf")
+        // <PopupCustom message={"1231232"}/>
+ 
+        const result = await createProduct(token, productData)
+        if(result){
+            setShowmodelSuccess(true)
+            setMessage(result?.data?.message)
+        }
     }
     const getAllColors = async () => {
         var allColors = await getListColors()
@@ -126,18 +146,26 @@ function AddProductForm() {
     function addNewProd() {
         var formData = new FormData();
         console.log(productColor, productName, productType)
-        formData.append('list_color_code', productColor);
         formData.append('product_name', productName);
         formData.append('quantity', productQuantity);
         formData.append('price', productPrice);
         formData.append('category', productType);
         formData.append('description', productDescription);
         formData.append('main_image_upload', mainImageUpload);
-        formData.append('list_size', sizeInputs)
 
         if (subImageUpload?.length > 0) {
             subImageUpload.forEach((image, index) => {
                 formData.append(`list_image_upload`, image);
+            });
+        }
+        if (productColor?.length > 0) {
+            productColor.forEach((color, index) => {
+                formData.append(`list_color_code`, color);
+            });
+        }
+        if (sizeInputs?.length > 0) {
+            sizeInputs.forEach((size, index) => {
+                formData.append(`list_size`, size);
             });
         }
 
@@ -156,7 +184,11 @@ function AddProductForm() {
         getAllColors()
     }, [])
     return (
+        
+         
+    
         <div class="add-content-product-container">
+               {showmodelSuccess && <PopupCustom setShowmodelSuccess={setShowmodelSuccess} showStatus={true} message={message}/>}
             <div className="container content-form-product">
                 <h1>Add New Product</h1>
                 <form >
@@ -230,6 +262,7 @@ function AddProductForm() {
                             <img key={index} src={image} alt={`Gallery Preview ${index + 1}`} style={{ maxWidth: '200px', marginTop: '10px', marginRight: '10px' }} />
                         ))}
                     </div>
+      
                     <button type="button" onClick={addNewProd}>Add Product</button>
                 </form>
             </div>

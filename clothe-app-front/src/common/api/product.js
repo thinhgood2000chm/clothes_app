@@ -5,9 +5,9 @@ async function getListProduct(last_product_id=""){
     try {
       var url = `${BASE_URL}products`
       console.log(url)
-    //   if(last_product_id){
-    //     url = `${BASE_URL}products?last_id=${last_product_id}`
-    //   }
+      if(last_product_id){
+        url = `${BASE_URL}products?last_id=${last_product_id}`
+      }
         const response = await fetch(url, 
             {
                 method: 'GET',
@@ -61,16 +61,17 @@ async function getDetailProduct(productId){
 
 
 
-async function createProduct(productData){
+async function createProduct(token, productData){
 try {
 
     var url = `${BASE_URL}product`
-    
+    console.log(url)
     const response = await fetch(url, 
         {
             method: 'POST',
             headers: {
-                // 'Authorization': `Bearer ${token}`
+                // 'Content-type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
             },
             body: productData
         }

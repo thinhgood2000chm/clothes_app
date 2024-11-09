@@ -1,44 +1,43 @@
 import {React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import image1 from "../../static/img/icon/heart.png"
+import logo from '../../static/img/logo/logo-color.png'
 
 function Footer() {
     return (
         <footer class="footer">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="col-lg-4">
 							<div class="footer__about">
 								<div class="footer__logo">
-									<a href="#"><img src="img/footer-logo.png" alt="" /></a>
+									<img src={logo} style={{width:"196px", height:"196px"}} alt="" />
 								</div>
-								<p>The customer is at the heart of our unique business model, which includes design.</p>
+								<h3 style={{textAlign:"center", color: "white" }} >Xưởng may Thịnh Khoa.</h3>
 								<a href="#"><img src="img/payment.png" alt="" /></a>
 							</div>
 						</div>
-						<div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+						<div class="col-lg-4">
 							<div class="footer__widget">
-								<h6>Shopping</h6>
-								<ul>
-									<li><a href="#">Clothing Store</a></li>
-									<li><a href="#">Trending Shoes</a></li>
-									<li><a href="#">Accessories</a></li>
-									<li><a href="#">Sale</a></li>
+								<h6>Cung cấp sỉ lẻ các loại quần áo</h6>
+								<ul style={{display:"inline-block"}}> 
+									<li style={{ color: "white" }}>Áo trơn</li>
+									<li style={{ color: "white" }}>Áo in sẵn </li>
+									<li style={{ color: "white" }}> Đồng phục học sinh, sinh viên</li>
+									<li style={{ color: "white" }}>Đồ du lịch</li>
 								</ul>
 							</div>
 						</div>
-						<div class="col-lg-2 col-md-3 col-sm-6">
+						<div class="col-lg-4">
 							<div class="footer__widget">
-								<h6>Shopping</h6>
+								<h6>Liên hệ</h6>
 								<ul>
-									<li><a href="#">Contact Us</a></li>
-									<li><a href="#">Payment Methods</a></li>
-									<li><a href="#">Delivary</a></li>
-									<li><a href="#">Return & Exchanges</a></li>
+									<li><a href="#">Facebook</a></li>
+									<li><a href="#">Zalo</a></li>
 								</ul>
 							</div>
 						</div>
-						<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+						{/* <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
 							<div class="footer__widget">
 								<h6>NewLetter</h6>
 								<div class="footer__newslatter">
@@ -49,7 +48,7 @@ function Footer() {
 									</form>
 								</div>
 							</div>
-						</div>
+						</div> */}
 					</div>
 					<div class="row">
 						<div class="col-lg-12 text-center">

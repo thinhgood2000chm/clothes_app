@@ -34,7 +34,6 @@ async def get_all_category(db: AsyncSession = Depends(MySQLService().get_db)):
     code = message = status_code = ''
     try:
         categories = await get_categories(db)
-        print(categories)
         list_data_response = []
         for category in categories:
             list_data_response.append({

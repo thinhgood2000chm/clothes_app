@@ -11,10 +11,10 @@ import image1 from "../../static/img/icon/heart.png"
 // import image1 from "D:/seatech/ekyc_ui/folder_image_save/48bcfb4d-1ca4-412a-b313-28841e379c27.png"
 import compareIcom from "../../static/img/icon/compare.png"
 import searchIcon from "../../static/img/icon/search.png"
-import banner4 from "../../static/img/banner/banner-4.jpg"
-import banner5 from "../../static/img/banner/banner-5.jpg"
-import banner6 from "../../static/img/banner/banner-6.jpg"
-import hero1 from "../../static/img/hero/hero-1.jpg"
+import banner4 from "../../static/img/banner/sample.png"
+import banner5 from "../../static/img/banner/in-theo-yeu-cau1.jpg"
+import banner6 from "../../static/img/banner/sample.png"
+import bannerTop from "../../static/img/hero/banner1.png"
 import hero2 from "../../static/img/hero/hero-2.jpg"
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -28,7 +28,6 @@ function Home() {
 	const products = async () => {
 		try {
 			const productsResponse = await getListProduct();
-			console.log("123123", productsResponse)
 			var listProduct = []
 			if (productsResponse && productsResponse?.data?.list_product.length > 0) {
 				productsResponse?.data?.list_product.forEach(product => {
@@ -101,15 +100,16 @@ function Home() {
 					<Carousel.Item>
 						<img
 							className="d-block w-100"
-							src={hero1}
+							src={bannerTop}
+							// style={{width:"936px", height:"390px"}}
 							alt="First slide"
 						/>
 						<Carousel.Caption>
-							<h5>First slide label</h5>
-							<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+							{/* <h5>First slide label</h5>
+							<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
 						</Carousel.Caption>
 					</Carousel.Item>
-					<Carousel.Item>
+					{/* <Carousel.Item>
 						<img
 							className="d-block w-100"
 							src={hero2}
@@ -119,7 +119,7 @@ function Home() {
 							<h5>First slide label</h5>
 							<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
 						</Carousel.Caption>
-					</Carousel.Item>
+					</Carousel.Item> */}
 
 				</Carousel>
 
@@ -139,11 +139,11 @@ function Home() {
 						<div class="col-lg-7 offset-lg-4">
 							<div class="banner__item">
 								<div class="banner__item__pic">
-									<img src={banner4} alt="" style={{width:"440px", height:"440px"}}/>
+								<Link to ='/contacts'><img src={banner4} alt="" style={{width:"440px", height:"440px"}}/></Link>
 								</div>
 								<div class="banner__item__text">
-									<h2>Mẫu áo Phú Quốc</h2>
-									<a href="#">Đặt ngay</a>
+									<h2>Mẫu áo trơn</h2>
+									<a href="/contacts">Đặt ngay</a>
 								</div>
 							</div>
 						</div>
@@ -153,8 +153,8 @@ function Home() {
 								<img src={banner5} alt="" style={{width:"440px", height:"440px"}}/>
 								</div>
 								<div class="banner__item__text">
-									<h2>Mẫu áo Nha Trang</h2>
-									<a href="#">Đặt ngay</a>
+									<h2>Mẫu áo in theo yêu cầu</h2>
+									<Link to ='/contacts'>Đặt ngay</Link>
 								</div>
 							</div>
 						</div>
@@ -164,7 +164,7 @@ function Home() {
 									<img src={banner6} alt="" style={{width:"440px", height:"440px"}}/>
 								</div>
 								<div class="banner__item__text">
-									<h2>Mẫu áo hot</h2>
+									<h2>Mẫu áo đồng phục</h2>
 									<a href="#">Đặt ngay</a>
 								</div>
 							</div>
@@ -178,9 +178,9 @@ function Home() {
 					<div class="row">
 						<div class="col-lg-12">
 							<ul class="filter__controls">
-								<li class="active" data-filter="*">Bán chạy nhất</li>
-								<li data-filter=".new-arrivals">Hàng mới</li>
-								<li data-filter=".hot-sales">Sản phẩm giảm giá</li>
+								<li class="active" data-filter="*">Sản phẩm</li>
+								{/* <li data-filter=".new-arrivals">Hàng mới</li>
+								<li data-filter=".hot-sales">Sản phẩm giảm giá</li> */}
 							</ul>
 						</div>
 					</div>
@@ -188,6 +188,7 @@ function Home() {
 						{<ListProduct/>}
 					
 					</div>
+					<div><center><button type="button" class="btn btn-outline-info" ><Link to='/product' ><b>Xem thêm sản phẩm</b></Link></button></center></div>
 				</div>
 			</section>
 			

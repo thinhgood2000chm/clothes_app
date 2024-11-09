@@ -1,7 +1,7 @@
 import {React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import image1 from "../../static/img/icon/heart.png"
-
+import logo from '../../static/img/logo/logo-no-background.png'
 function Header() {
     const [activeclassName, setActivateclassName] = useState("offcanvas-menu-wrapper")
     function clickOpenCanvasHeader(){
@@ -13,6 +13,7 @@ function Header() {
         }
 
     }
+    
     return (
         <>
             {/* <div className="offcanvas-menu-overlay active"></div> */}
@@ -59,7 +60,7 @@ function Header() {
                     </nav>
                 </div>
                 <div className="offcanvas__text">
-                    <p>Free shipping, 30-day return or refund guarantee.</p>
+                    {/* <p>Free shipping, 30-day return or refund guarantee.</p> */}
                 </div>
             </div>
 
@@ -69,7 +70,8 @@ function Header() {
                         <div className="row">
                             <div className="col-lg-6 col-md-7">
                                 <div className="header__top__left">
-                                    <p>Free shipping, 30-day return or refund guarantee.</p>
+                        
+                                    {/* <p>Free shipping, 30-day return or refund guarantee.</p>  */}
                                 </div>
                             </div>
                             <div className="col-lg-6 col-md-5">
@@ -94,7 +96,7 @@ function Header() {
                     <div className="row">
                         <div className="col-lg-3 col-md-3">
                             <div className="header__logo">
-                                <a href="./index.html"><img src="img/logo.png" alt="" /></a>
+                                <a href="/"><img src={logo} style={{width:"300px", height:"52.44px"}} alt="" /></a>
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-6">

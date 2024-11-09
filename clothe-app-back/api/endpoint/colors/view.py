@@ -40,7 +40,6 @@ async def get_all_colors(db: AsyncSession = Depends(MySQLService().get_db)):
                 "color_name": color.color_name,
                 "color_code": color.color_code
             })
-        print(list_data_color)
         response_data = {
             "data": list_data_color,
             "response_status": {
@@ -49,7 +48,6 @@ async def get_all_colors(db: AsyncSession = Depends(MySQLService().get_db)):
                 "message": ""
             }
         }
-        print(response_data)
         return SuccessResponse[List[ResponseColors]](**response_data)
     except:
         logger.error(message, exc_info=True)

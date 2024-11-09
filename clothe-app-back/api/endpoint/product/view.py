@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends, Query, Form, UploadFile, File, HTTPExcep
 from starlette.status import HTTP_200_OK, HTTP_500_INTERNAL_SERVER_ERROR, HTTP_400_BAD_REQUEST
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from api.base.author import get_current_user
 from api.base.schema import SuccessResponse, ResponseStatus, FailResponse, SuccessMessage
 from api.endpoint.product.schema import ResponseListProduct, ResponseProduct
 from api.library.constant import CODE_ERROR_SERVER, TYPE_MESSAGE_RESPONSE, CODE_ERROR_INPUT
@@ -37,7 +38,12 @@ router = APIRouter()
         fail_response_model=FailResponse[ResponseStatus]
     )
 )
-async def get_all_product(last_id: str = Query(""), db: AsyncSession = Depends(MySQLService().get_db)):
+async def get_all_product(
+        color: str = Query(""),
+        category: str = Query(""),
+        size: str = Query(""),
+        last_id: str = Query(""),
+        db: AsyncSession = Depends(MySQLService().get_db)):
     code = message = status_code = ''
     try:
         products_image_color = await get_all_product_paging(db, last_id)
@@ -118,18 +124,19 @@ async def create_product(
         list_color_code: List[str] = Form([]),
         list_image_upload: List[UploadFile] = File(None),
         main_image_upload: UploadFile = File(None),
-        db: AsyncSession = Depends(MySQLService().get_db)
+        user: dict = Depends(get_current_user),
+        db: AsyncSession = Depends(MySQLService().get_db),
+
 ):
     status_code = message = code = ""
     try:
-        print(category)
-        if len(list_image_upload) > 3:
+        if list_image_upload is not None and len(list_image_upload) > 3:
             status_code = HTTP_400_BAD_REQUEST
             code = CODE_ERROR_INPUT
             message = "Ảnh phụ chỉ cho phép tối đa 3 ảnh"
         get_colors = await get_color_info(db, list_color_code)
         get_category = await get_category_by_id(category, db)
-        if not get_colors or not (get_colors and len(get_colors) == len(list_color_code)) :
+        if not get_colors or not (get_colors and len(get_colors) == len(list_color_code)):
             status_code = HTTP_400_BAD_REQUEST
             code = CODE_ERROR_INPUT
             message = "color không tồn tại"
@@ -189,7 +196,6 @@ async def create_product(
             "product_id": new_product.id,
             "color_id": color.id
         } for color in get_colors]
-        print(new_product.id)
         await db.execute(insert(ProductsColor).values(list_color))
         await db.commit()
         return SuccessResponse[SuccessMessage](**{
@@ -229,7 +235,6 @@ async def get_detail_product(product_id: str, db: AsyncSession = Depends(MySQLSe
     code = message = status_code = ''
     try:
         product = await get_product(db, product_id)
-        print(product)
         product_detail = {
             "id": product[0][0].id,
             "product_name": product[0][0].product_name,

@@ -1953,7 +1953,14 @@ ol {
 }
 
 .footer__about .footer__logo {
+	text-align: center;
 	margin-bottom: 30px;
+}
+/* căn giữa ảnh theo thẻ cha là footer_logo đang để căn giữa những phần tử bên trong 
+=?> inline block khiến cho img tuân theo text-aligntrong thẻ cha
+	*/
+.footer__about .footer__logo img{ 
+	display: inline-block;
 }
 
 .footer__about .footer__logo a {
@@ -1967,6 +1974,8 @@ ol {
 
 .footer__widget {
 	margin-bottom: 30px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .footer__widget h6 {
@@ -1977,7 +1986,9 @@ ol {
 	letter-spacing: 2px;
 	margin-bottom: 20px;
 }
-
+.footer__widget ul  {
+	display: inline-block;
+}
 .footer__widget ul li {
 	line-height: 36px;
 	list-style: none;
