@@ -1,7 +1,7 @@
 import {React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import image1 from "../../static/img/icon/heart.png"
-import logo from '../../static/img/logo/logo-color.png'
+import logo from '../../static/img/logo/logo-color.jpg'
 
 function Footer() {
     return (

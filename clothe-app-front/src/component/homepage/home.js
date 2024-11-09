@@ -11,10 +11,10 @@ import image1 from "../../static/img/icon/heart.png"
 // import image1 from "D:/seatech/ekyc_ui/folder_image_save/48bcfb4d-1ca4-412a-b313-28841e379c27.png"
 import compareIcom from "../../static/img/icon/compare.png"
 import searchIcon from "../../static/img/icon/search.png"
-import banner4 from "../../static/img/banner/sample.png"
+import banner4 from "../../static/img/banner/sample.jpg"
 import banner5 from "../../static/img/banner/in-theo-yeu-cau1.jpg"
-import banner6 from "../../static/img/banner/sample.png"
-import bannerTop from "../../static/img/hero/banner1.png"
+import banner6 from "../../static/img/banner/sample.jpg"
+import bannerTop from "../../static/img/hero/banner1.jpg"
 import hero2 from "../../static/img/hero/hero-2.jpg"
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
