@@ -19,7 +19,7 @@ from api.third_party.model.products import ProductsColor, Products
 from api.third_party.model.size import ProductsSize
 from api.third_party.query.category import get_category_by_id
 from api.third_party.query.color import get_color_info
-from api.third_party.query.product import get_all_product_paging, get_product
+from api.third_party.query.product import get_all_product_paging, get_product, get_color_img_size_of_product
 from setting import init_project
 from setting.init_project import open_api_standard_responses, http_exception
 
@@ -46,7 +46,8 @@ async def get_all_product(
         db: AsyncSession = Depends(MySQLService().get_db)):
     code = message = status_code = ''
     try:
-        products_image_color = await get_all_product_paging(db, last_id)
+        list_product_id = await get_all_product_paging(db, last_id)
+        products_image_color = await get_color_img_size_of_product(db, last_id, list_product_id)
         products = {}
 
         for prod, img, color, size in products_image_color:
@@ -59,6 +60,7 @@ async def get_all_product(
                     logger.error(f"path {img.image_path} không tồn tại")
                     string_base64 = f'data:image/png;base64,'
             if prod.id not in products:
+
                 products[prod.id] = {
                     "id": prod.id,
                     "product_name": prod.product_name,

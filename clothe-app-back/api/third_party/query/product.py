@@ -9,7 +9,32 @@ from api.third_party.model.size import ProductsSize
 
 
 async def get_all_product_paging(db: AsyncSession, last_id=0):
-    productss = await db.execute(
+    # productss = await db.execute(
+    #     select(
+    #         Products, ProductsImage, Colors, ProductsSize
+    #     ).join(
+    #         ProductsImage, ProductsImage.product_id == Products.id, isouter=True
+    #     ).join(
+    #         ProductsSize, ProductsSize.product_id == Products.id, isouter=True
+    #     ).join(
+    #         ProductsColor, ProductsColor.product_id == Products.id, isouter=True
+    #     ).join(
+    #         Colors, Colors.id == ProductsColor.color_id, isouter=True
+    #     ).filter(Products.id > last_id, ProductsImage.main_image == True).limit(LIMIT_PAGING)
+    #
+    # )
+    products = await db.execute(
+        select(
+            Products.id
+        ).filter(Products.id > last_id, ProductsImage.main_image == True).limit(LIMIT_PAGING)
+
+    )
+    products = products.scalars().all()
+    return products
+
+
+async def get_color_img_size_of_product(db: AsyncSession, last_id=0, list_product_id= []):
+    products = await db.execute(
         select(
             Products, ProductsImage, Colors, ProductsSize
         ).join(
@@ -20,10 +45,10 @@ async def get_all_product_paging(db: AsyncSession, last_id=0):
             ProductsColor, ProductsColor.product_id == Products.id, isouter=True
         ).join(
             Colors, Colors.id == ProductsColor.color_id, isouter=True
-        ).filter(Products.id > last_id, ProductsImage.main_image == True).limit(LIMIT_PAGING)
-
+        ).filter(Products.id.in_(list_product_id))
     )
-    products = productss.all()
+
+    products = products.all()
     return products
 
 
