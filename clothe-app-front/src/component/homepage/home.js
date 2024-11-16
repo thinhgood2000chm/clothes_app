@@ -13,6 +13,7 @@ import compareIcom from "../../static/img/icon/compare.png"
 import searchIcon from "../../static/img/icon/search.png"
 import banner4 from "../../static/img/banner/sample.jpg"
 import banner5 from "../../static/img/banner/in-theo-yeu-cau1.jpg"
+import theduc from  "../../static/img/banner/theduc.png"
 import banner6 from "../../static/img/banner/sample.jpg"
 import bannerTop from "../../static/img/hero/banner1.jpg"
 import hero2 from "../../static/img/hero/hero-2.jpg"
@@ -161,7 +162,7 @@ function Home() {
 						<div class="col-lg-7">
 							<div class="banner__item banner__item--last">
 								<div class="banner__item__pic">
-									<img src={banner6} alt="" style={{width:"440px", height:"440px"}}/>
+									<img src={theduc} alt="" style={{width:"380px", height:"440px"}}/>
 								</div>
 								<div class="banner__item__text">
 									<h2>Mẫu áo đồng phục</h2>

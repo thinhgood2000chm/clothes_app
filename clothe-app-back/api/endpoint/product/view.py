@@ -46,7 +46,7 @@ async def get_all_product(
         db: AsyncSession = Depends(MySQLService().get_db)):
     code = message = status_code = ''
     try:
-        list_product_id = await get_all_product_paging(db, last_id)
+        list_product_id = await get_all_product_paging(db, category, last_id)
         products_image_color = await get_color_img_size_of_product(db, last_id, list_product_id)
         products = {}
 

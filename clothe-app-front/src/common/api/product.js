@@ -1,12 +1,20 @@
 import {BASE_URL} from "../constant"
 
-async function getListProduct(last_product_id=""){
+async function getListProduct(category_id= '', last_product_id=""){
 
     try {
       var url = `${BASE_URL}products`
-      console.log(url)
       if(last_product_id){
         url = `${BASE_URL}products?last_id=${last_product_id}`
+      }
+      if (category_id){
+        if (url.includes('?')){
+            url = `${url}&category=${category_id}`
+        }
+        else{
+              url = `${BASE_URL}products?category=${category_id}`
+        }
+    
       }
         const response = await fetch(url, 
             {

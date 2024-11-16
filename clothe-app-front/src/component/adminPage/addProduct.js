@@ -52,7 +52,7 @@ function AddProductForm() {
                 var colorBackground = color?.color_code
                 console.log(colorBackground)
                 listColorOption.push(
-                    <div class="color" id={idColor} style={{ backgroundColor: colorBackground }} data-color={color.color_code} onMouseDown={setColors}></div>
+                    <div className="color" id={idColor} style={{ backgroundColor: colorBackground }} data-color={color.color_code} onMouseDown={setColors}></div>
                 )
 
             })
@@ -187,25 +187,25 @@ function AddProductForm() {
         
          
     
-        <div class="add-content-product-container">
+        <div className="add-content-product-container">
                {showmodelSuccess && <PopupCustom setShowmodelSuccess={setShowmodelSuccess} showStatus={true} message={message}/>}
             <div className="container content-form-product">
                 <h1>Add New Product</h1>
                 <form >
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="productName">Product Name:</label>
                         <input type="text" id="productName" name="productName" onChange={setValueProductName} required />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="productColor">Product Color:</label>
-                        <div class="color-palette">
+                        <div className="color-palette">
                             {colorsState}
-                            {/* <div class="color" id = "c1"style={{backgroundColor: "#ff0000"}} data-color="#ff0000" onMouseDown={setColors}></div>
-                    <div class="color " id = "c2" style={{backgroundColor: "#FFA500"}} data-color="#FFA500" onMouseDown={setColors}></div>
-                    <div class="color " id = "c3" style={{backgroundColor: "#0000ff"}} data-color="#0000ff"  onMouseDown={setColors}></div>
-                    <div class="color " id = "c4" style={{backgroundColorr: "#ffff00"}} data-color="#ffff00"  onMouseDown={setColors}></div>
-                    <div class="color " id = "c5" style={{backgroundColor: "#ff00ff"}} data-color="#ff00ff"  onMouseDown={setColors}></div>
-                    <div class="color " id = "c6" style={{backgroundColor: "#00ffff"}} data-color="#00ffff"  onMouseDown={setColors}></div> */}
+                            {/* <div className="color" id = "c1"style={{backgroundColor: "#ff0000"}} data-color="#ff0000" onMouseDown={setColors}></div>
+                    <div className="color " id = "c2" style={{backgroundColor: "#FFA500"}} data-color="#FFA500" onMouseDown={setColors}></div>
+                    <div className="color " id = "c3" style={{backgroundColor: "#0000ff"}} data-color="#0000ff"  onMouseDown={setColors}></div>
+                    <div className="color " id = "c4" style={{backgroundColorr: "#ffff00"}} data-color="#ffff00"  onMouseDown={setColors}></div>
+                    <div className="color " id = "c5" style={{backgroundColor: "#ff00ff"}} data-color="#ff00ff"  onMouseDown={setColors}></div>
+                    <div className="color " id = "c6" style={{backgroundColor: "#00ffff"}} data-color="#00ffff"  onMouseDown={setColors}></div> */}
                         </div>
                     </div>
                     <div id="inputContainer">
@@ -223,7 +223,7 @@ function AddProductForm() {
                         ))}
                     </div>
                     <div className="btn btn-success addNewSize" onClick={addNewInputTextSize}> Thêm kích thước</div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="productType">Product Type:</label>
                         <select id="productType" name="productType" value={productType} onChange={setValueProductCategory} required>
                             {categories}
@@ -233,19 +233,19 @@ function AddProductForm() {
 
                         </select>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-field">
+                    <div className="form-group">
+                        <div className="input-group">
+                            <div className="input-field">
                                 <label for="productPrice">Product Price:</label>
                                 <input type="number" id="productPrice" name="productPrice" onChange={setValueProductPrice} required />
                             </div>
-                            <div class="input-field">
+                            <div className="input-field">
                                 <label for="productQuantity">Product Quantity:</label>
                                 <input type="number" id="productQuantity" name="productQuantity" onChange={setValueProductQuantity} required />
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="productDescription">Product Description:</label>
                         <textarea id="productDescription" name="productDescription" onChange={setValueProductDescription} rows="4" required></textarea>
                     </div>

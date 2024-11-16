@@ -7,6 +7,7 @@ import '../../static/css/style.css'
 import { Link, useParams } from 'react-router-dom';
 import { getDetailProduct } from '../../common/api/product'
 import { useEffect, useState } from 'react'
+import ListProduct from './listProduct.js'
 function ProductDetail() {
 
     const [images, setImages] = useState()
@@ -14,6 +15,8 @@ function ProductDetail() {
     const { productId } = useParams()/* :usercode chinhs là param để khi sử dụng useParam có thể lấy ra được(phải đúng tên) trong navigate hoặc Link, ko cần truyền state*/
     const [productInfo, setProductInfo] = useState()
     const [description, setDescription] = useState()
+    const [category_id, setCategory] = useState()
+    const [currentProductDetailId, setCurrentProductDetailId] = useState() // này dùng để truyền qua bên listproduct để xóa đi product hiện tại đang hiển thị, ko hiển thị lên sản phẩm liên quan
     const changeImage = (e) => {
         var source = e.target.getAttribute("src")
         setMainImage(source)
@@ -23,6 +26,8 @@ function ProductDetail() {
         const result = await getDetailProduct(productId);
         if (result && result?.data) {
             setDescription(result?.data?.description)
+            setCategory(result?.data.category)
+            setCurrentProductDetailId(result?.data.id)
             var list_image = []
             if (result?.data?.image.length > 0) {
                 setMainImage(result?.data?.image[0])
@@ -72,7 +77,7 @@ function ProductDetail() {
             if (result?.data) {
                 console.table(result.data.size)
                 setProductInfo(<div class="product__details__text">
-                    <h4>Hooded thermal anorak</h4>
+                    <h4>{result.data.product_name}</h4>
                     {/* <div class="rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -81,10 +86,11 @@ function ProductDetail() {
                         <i class="fa fa-star-o"></i>
                         <span> - 5 Reviews</span>
                     </div> */}
-                    <h3>$270.00 <span>70.00</span></h3>
-                    <p>Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable
+                     {/* <h3>{result.data.price} VND<span>70.00</span></h3>  70.00 la code giam gia*/} 
+                    <h3>{result.data.price} VND<span>70.00</span></h3>
+                    {/* <p>Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable
                         cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening
-                        with placket.</p>
+                        with placket.</p> */}
                     <div class="product__details__option">
                         <div class="product__details__option__size">
                             <span>Size:</span>
@@ -244,146 +250,9 @@ function ProductDetail() {
                             <h3 class="related-title">Related Product</h3>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                                    <span class="label">New</span>
-                                    <ul class="product__hover">
-                                        <li><a href="#"><img src="img/icon/heart.png" alt="" /></a></li>
-                                        <li><a href="#"><img src="img/icon/compare.png" alt="" /> <span>Compare</span></a></li>
-                                        <li><a href="#"><img src="img/icon/search.png" alt="" /></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>Piqué Biker Jacket</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>$67.24</h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-1">
-                                            <input type="radio" id="pc-1" />
-                                        </label>
-                                        <label class="active black" for="pc-2">
-                                            <input type="radio" id="pc-2" />
-                                        </label>
-                                        <label class="grey" for="pc-3">
-                                            <input type="radio" id="pc-3" />
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
-                                    <ul class="product__hover">
-                                        <li><a href="#"><img src="img/icon/heart.png" alt="" /></a></li>
-                                        <li><a href="#"><img src="img/icon/compare.png" alt="" /> <span>Compare</span></a></li>
-                                        <li><a href="#"><img src="img/icon/search.png" alt="" /></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>Piqué Biker Jacket</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>$67.24</h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-4">
-                                            <input type="radio" id="pc-4" />
-                                        </label>
-                                        <label class="active black" for="pc-5">
-                                            <input type="radio" id="pc-5" />
-                                        </label>
-                                        <label class="grey" for="pc-6">
-                                            <input type="radio" id="pc-6" />
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/product/product-3.jpg">
-                                    <span class="label">Sale</span>
-                                    <ul class="product__hover">
-                                        <li><a href="#"><img src="img/icon/heart.png" alt="" /></a></li>
-                                        <li><a href="#"><img src="img/icon/compare.png" alt="" /> <span>Compare</span></a></li>
-                                        <li><a href="#"><img src="img/icon/search.png" alt="" /></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>Multi-pocket Chest Bag</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>$43.48</h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-7">
-                                            <input type="radio" id="pc-7" />
-                                        </label>
-                                        <label class="active black" for="pc-8">
-                                            <input type="radio" id="pc-8" />
-                                        </label>
-                                        <label class="grey" for="pc-9">
-                                            <input type="radio" id="pc-9" />
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/product/product-4.jpg">
-                                    <ul class="product__hover">
-                                        <li><a href="#"><img src="img/icon/heart.png" alt="" /></a></li>
-                                        <li><a href="#"><img src="img/icon/compare.png" alt="" /> <span>Compare</span></a></li>
-                                        <li><a href="#"><img src="img/icon/search.png" alt="" /></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>Diagonal Textured Cap</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>$60.9</h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-10">
-                                            <input type="radio" id="pc-10" />
-                                        </label>
-                                        <label class="active black" for="pc-11">
-                                            <input type="radio" id="pc-11" />
-                                        </label>
-                                        <label class="grey" for="pc-12">
-                                            <input type="radio" id="pc-12" />
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    { category_id && currentProductDetailId && 
+                        <ListProduct category_id = {category_id} currentProductDetailId = {currentProductDetailId}/>
+                    }
                 </div>
             </section>
         </div>

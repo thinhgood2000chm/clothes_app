@@ -6,7 +6,9 @@ import searchIcon from "../../static/img/icon/search.png"
 import { getListProduct } from "../../common/api/product"
 import { useNavigate } from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom';
-function ListProduct() {
+function ListProduct(props) {
+	const {category_id, currentProductDetailId} = props
+	console.log(category_id)
     const [productInfo, setProductInfo] = useState()
 	const [lastProductId, setLastProductId] = useState("")
 	const [isStillHaveProductForLoad, SetIsStillHaveProductForLoad] = useState(true)
@@ -21,45 +23,48 @@ function ListProduct() {
 
 	const products = async () => {
 		try {
-			const productsResponse = await getListProduct(lastProductId);
+			const productsResponse = await getListProduct(category_id, lastProductId);
 			var listProduct = []
 			setLastProductId(productsResponse?.data?.last_id)
 			if (productsResponse && productsResponse?.data?.list_product.length > 0) {
 				productsResponse?.data?.list_product.forEach(product => {
+					if (currentProductDetailId && product.id === currentProductDetailId){
+						return;
+					}
 					if (product?.color?.length > 0){
 						var list_product_color = []
 						product?.color.forEach(color=> {
 							list_product_color.push(
-							<label  style={{ backgroundColor: color }} for="">
+							<label  style={{ backgroundColor: color }}>
 								<input type="radio"/>
 							</label>
 							)
 							})
 					}
 					listProduct.push(
-					<div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-						<div class="product__item" >
-					<div class="product__item__pic set-bg" data-setbg="" ><img className="img_product" data-productid = {product.id} onClick={getDetail}   src={product.image[0]} alt="" />
-							{/* <div class="product__item__pic set-bg" data-setbg="" ><Link to={`/product-detail/${product.id}`} state={{ "productId": product.id }}><img    src={product.image[0]} alt="" /></Link> */}
-								{/* <span class="label">Sale</span> */}
-								{/* <ul class="product__hover">
+					<div className="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+						<div className="product__item" >
+					<div className="product__item__pic set-bg" data-setbg="" ><img className="img_product" data-productid = {product.id} onClick={getDetail} style={{width:"260px", height:"260px"}}  src={product.image[0]} alt="" />
+							{/* <div className="product__item__pic set-bg" data-setbg="" ><Link to={`/product-detail/${product.id}`} state={{ "productId": product.id }}><img    src={product.image[0]} alt="" /></Link> */}
+								{/* <span className="label">Sale</span> */}
+								{/* <ul className="product__hover">
 									<li><a href="#"><img src={image1} alt="" /></a></li>
 									<li><a href="#"><img src={compareIcom} alt="" /> <span>Compare</span></a></li>
 									<li><img src={searchIcon} alt="" /></li>
 								</ul> */}
 							</div>
-							<div class="product__item__text">
+							<div className="product__item__text">
 								<h6>{product.product_name}</h6>
-								<a href="#" class="add-cart">+ Add To Cart</a>
-								<div class="rating">
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
+								<a href="#" className="add-cart">+ Add To Cart</a>
+								<div className="rating">
+									<i className="fa fa-star-o"></i>
+									<i className="fa fa-star-o"></i>
+									<i className="fa fa-star-o"></i>
+									<i className="fa fa-star-o"></i>
+									<i className="fa fa-star-o"></i>
 								</div>
 								<h5>{product.price}</h5>
-								<div class="product__color__select">
+								<div className="product__color__select">
 								{list_product_color}
 								{/* {product?.color.forEach(color=> {
 								<label  style={{ backgroundColor: color }} for="">
@@ -86,7 +91,6 @@ function ListProduct() {
 				}
 
 			}
-			console.log("sadfdf")
 	
 
 		} catch (error) {
@@ -97,13 +101,13 @@ function ListProduct() {
 		products()
 	}, [])
 	return (<>
-                    <div class="row">            
+                    <div className="row">            
                  {productInfo}
                     </div>
 					{ window.location.href.includes('/product') && isStillHaveProductForLoad === true &&		
 					    <div className="row">
 						  <div className="col-lg-12">
-						  <center><button type="button" class="btn btn-outline-info" onClick={products}><b>Xem thêm sản phẩm</b></button></center>
+						  <center><button type="button" className="btn btn-outline-info" onClick={products}><b>Xem thêm sản phẩm</b></button></center>
 						  </div>
 					  </div>
 					}
