@@ -4,7 +4,6 @@ async function getListColors(){
 
     try {
       var url = `${BASE_URL}colors`
-      console.log(url)
         const response = await fetch(url, 
             {
                 method: 'GET',

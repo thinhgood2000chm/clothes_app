@@ -4,7 +4,6 @@ async function getListCategory(){
 
     try {
       var url = `${BASE_URL}categories`
-      console.log(url)
         const response = await fetch(url, 
             {
                 method: 'GET',

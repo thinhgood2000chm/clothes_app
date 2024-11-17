@@ -73,7 +73,6 @@ async function createProduct(token, productData){
 try {
 
     var url = `${BASE_URL}product`
-    console.log(url)
     const response = await fetch(url, 
         {
             method: 'POST',

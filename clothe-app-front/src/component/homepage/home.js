@@ -75,7 +75,6 @@ function Home() {
 					)
 				})
 			}
-			console.log("sadfdf")
 			setProductInfo(listProduct)
 
 

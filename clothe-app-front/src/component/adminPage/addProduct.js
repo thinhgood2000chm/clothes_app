@@ -23,7 +23,6 @@ function AddProductForm() {
     const [colorsState, setColorsState] = useState();
 
     const token = getCookieToken()
-    console.log(token)
     const { close } = useParams()
     const [showmodelSuccess, setShowmodelSuccess] = useState()
     const [message, setMessage] = useState()
@@ -33,7 +32,6 @@ function AddProductForm() {
 
         // {toast && <PopupCustom message={toast} onClose={() => setToast(null)} />}
         // <PopupCustom && PopupCustom showStatus={true}/>
-        // console.log("dsfdfdf")
         // <PopupCustom message={"1231232"}/>
  
         const result = await createProduct(token, productData)
@@ -50,7 +48,6 @@ function AddProductForm() {
             allColors?.data.forEach((color, index) => {
                 var idColor = `c${index}`
                 var colorBackground = color?.color_code
-                console.log(colorBackground)
                 listColorOption.push(
                     <div className="color" id={idColor} style={{ backgroundColor: colorBackground }} data-color={color.color_code} onMouseDown={setColors}></div>
                 )
@@ -145,7 +142,6 @@ function AddProductForm() {
     }
     function addNewProd() {
         var formData = new FormData();
-        console.log(productColor, productName, productType)
         formData.append('product_name', productName);
         formData.append('quantity', productQuantity);
         formData.append('price', productPrice);
@@ -172,7 +168,6 @@ function AddProductForm() {
         // formData.append('video_upload', postVideo);
         // setOnLoading(true)
         // callApiCreateNewPost(formData)
-        console.log(formData)
         addNewProduct(formData)
     }
     const addNewInputTextSize = () => {
@@ -212,12 +207,10 @@ function AddProductForm() {
                         {sizeInputs.map((input, index) => (
                             <input key={index} type="text" value={input} className='inputContent'
                                 onChange={(event) => {
-                                    console.log("dsfdfdf")
                                     // Update the value of the corresponding input in the state array
                                     const newsizeInputs = [...sizeInputs];
                                     newsizeInputs[index] = event.target.value;
                                     setsizeInputs(newsizeInputs);
-                                    console.log(sizeInputs)
                                 }}
                             />
                         ))}

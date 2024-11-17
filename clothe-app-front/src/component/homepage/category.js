@@ -7,7 +7,6 @@ function ListCategory() {
         var listCategory =[]
         if(result && result?.data?.length >= 1){
             result?.data.forEach(category => {
-                console.log(category['name'])
                 listCategory.push(<li><a href="#">{category['name']}</a></li>)
             });
             

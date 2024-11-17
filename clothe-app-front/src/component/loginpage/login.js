@@ -34,11 +34,9 @@ function Login() {
       "username": username,
       "password": password.value
     }
-    console.log(requestBody)
 
     try{
       const result = await loginPage(requestBody)
-      console.log(result)
       if(result?.data?.access_token){
         let expires = new Date()
         expires.setTime(expires.getTime() + (60 * 60 * 4 * 1000))
@@ -48,7 +46,6 @@ function Login() {
       }
       else{
         if (result.detail.code)
-          console.log(result.detail.message)
           setErrMsg(result.detail.message);
       }
   

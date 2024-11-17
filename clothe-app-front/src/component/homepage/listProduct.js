@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom';
 function ListProduct(props) {
 	const {category_id, currentProductDetailId} = props
-	console.log(category_id)
     const [productInfo, setProductInfo] = useState()
 	const [lastProductId, setLastProductId] = useState("")
 	const [isStillHaveProductForLoad, SetIsStillHaveProductForLoad] = useState(true)
