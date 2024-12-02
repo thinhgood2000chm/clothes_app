@@ -21,7 +21,14 @@ config_system = {
     "PATH_SAVE_IMAGE": dotenv_values.get("PATH_SAVE_IMAGE", ""),
     "EXPIRES_TIME": dotenv_values.get("EXPIRES_TIME", 60),
     "JWT_SECRET_KEY": dotenv_values.get("JWT_SECRET_KEY", ""),
-    "ALGORITHM": dotenv_values.get("ALGORITHM", ""),
+    "EMAIL_BACKEND": dotenv_values.get("EMAIL_BACKEND", ""),
+    "EMAIL_HOST": dotenv_values.get("EMAIL_HOST", ""),
+    "EMAIL_USE_TLS": dotenv_values.get("EMAIL_USE_TLS", ""),
+    "EMAIL_PORT": dotenv_values.get("EMAIL_PORT", ""),
+    "EMAIL_HOST_USER": dotenv_values.get("EMAIL_HOST_USER", ""),
+    "EMAIL_HOST_PASSWORD": dotenv_values.get("EMAIL_HOST_PASSWORD", ""),
+    "EMAIL_TIMEOUT": dotenv_values.get("EMAIL_TIMEOUT", ""),
+
 }
 
 
