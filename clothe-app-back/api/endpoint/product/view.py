@@ -122,6 +122,7 @@ async def create_product(
         quantity: str = Form(""),
         price: str = Form(""),
         category: str = Form(...),
+        material: str = Form(...),
         list_size: List[str] = Form([]),
         list_color_code: List[str] = Form([]),
         list_image_upload: List[UploadFile] = File(None),
@@ -155,6 +156,7 @@ async def create_product(
             quantity=int(quantity),
             price=float(price),
             category=category,
+            material=material,
         )
         db.add(new_product)
         await db.commit()
@@ -241,6 +243,7 @@ async def get_detail_product(product_id: str, db: AsyncSession = Depends(MySQLSe
             "id": product[0][0].id,
             "product_name": product[0][0].product_name,
             "description": product[0][0].description,
+            "material": product[0][0].material,
             "image": [],
             "quantity": product[0][0].quantity,
             "price": product[0][0].price,

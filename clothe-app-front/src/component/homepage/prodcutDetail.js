@@ -15,6 +15,7 @@ function ProductDetail() {
     const { productId } = useParams()/* :usercode chinhs là param để khi sử dụng useParam có thể lấy ra được(phải đúng tên) trong navigate hoặc Link, ko cần truyền state*/
     const [productInfo, setProductInfo] = useState()
     const [description, setDescription] = useState()
+    const [material, setMaterial] = useState()
     const [category_id, setCategory] = useState()
     const [currentProductDetailId, setCurrentProductDetailId] = useState() // này dùng để truyền qua bên listproduct để xóa đi product hiện tại đang hiển thị, ko hiển thị lên sản phẩm liên quan
     const changeImage = (e) => {
@@ -26,6 +27,7 @@ function ProductDetail() {
         const result = await getDetailProduct(productId);
         if (result && result?.data) {
             setDescription(result?.data?.description)
+            setMaterial(result?.data?.material)
             setCategory(result?.data.category)
             setCurrentProductDetailId(result?.data.id)
             var list_image = []
@@ -225,13 +227,7 @@ function ProductDetail() {
                                                 </div>
                                                 <div class="product__details__tab__content__item">
                                                     <h5>Material used</h5>
-                                                    <p>Polyester is deemed lower quality due to its none natural quality’s. Made
-                                                        from synthetic materials, not natural like wool. Polyester suits become
-                                                        creased easily and are known for not being breathable. Polyester suits
-                                                        tend to have a shine to them compared to wool and cotton suits, this can
-                                                        make the suit look cheap. The texture of velvet is luxurious and
-                                                        breathable. Velvet is a great choice for dinner party jacket and can be
-                                                        worn all year round.</p>
+                                                    <p>{material}</p>
                                                 </div>
                                             </div>
                                         </div>

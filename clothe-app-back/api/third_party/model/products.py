@@ -15,7 +15,7 @@ class Products(BaseModel):
     description = Column(String(1000), nullable=True)
     quantity = Column(Integer, nullable=False, default=0)
     price = Column(Float, nullable=False, default=0)
-
+    material = Column(String(1000), nullable=True)
     category = Column(BigInteger,  ForeignKey('categories.id'), index=True)
     products_color = relationship("ProductsColor")
     size = relationship("ProductsSize")

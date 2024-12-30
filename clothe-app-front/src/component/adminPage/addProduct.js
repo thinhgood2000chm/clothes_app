@@ -14,6 +14,7 @@ function AddProductForm() {
     const [productPrice, setProductPrice] = useState('');
     const [productQuantity, setProductQuantity] = useState('');
     const [productDescription, setProductDescription] = useState('');
+    const [productMaterial, setProductMaterial] = useState('');
     const [mainImage, setMainImage] = useState('');
     const [mainImageUpload, setMainImageUpload] = useState()
     const [galleryImages, setGalleryImages] = useState([]);
@@ -109,6 +110,11 @@ function AddProductForm() {
         var prodDes = event.target.value
         setProductDescription(prodDes)
     }
+    function setValueProductMaterial(event) {
+        var prodMaterial = event.target.value
+        setProductMaterial(prodMaterial)
+    }
+    
     function setValueProductPrice(event) {
         var prodprice = event.target.value
         setProductPrice(prodprice)
@@ -147,6 +153,7 @@ function AddProductForm() {
         formData.append('price', productPrice);
         formData.append('category', productType);
         formData.append('description', productDescription);
+        formData.append('material', productMaterial);
         formData.append('main_image_upload', mainImageUpload);
 
         if (subImageUpload?.length > 0) {
@@ -241,6 +248,10 @@ function AddProductForm() {
                     <div className="form-group">
                         <label for="productDescription">Product Description:</label>
                         <textarea id="productDescription" name="productDescription" onChange={setValueProductDescription} rows="4" required></textarea>
+                    </div>
+                    <div className="form-group">
+                        <label for="productMaterial">Product Material:</label>
+                        <textarea id="productMaterial" name="productMaterial" onChange={setValueProductMaterial} rows="5" required></textarea>
                     </div>
                     {/* Add other form fields similarly */}
                     <div className="form-group">

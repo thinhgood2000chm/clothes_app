@@ -7,6 +7,7 @@ class ResponseProduct(BaseModel):
     product_code: str = Field("", example='')
     product_name: Optional[str] = Field("", example='')
     description: Optional[str] = Field("", example='')
+    material: Optional[str] = Field("", example='')
     quantity: Optional[int] = Field("", example='')
     price: Optional[float] = Field("", example='')
     size: List[str] = Field([], example=[])

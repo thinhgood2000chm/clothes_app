@@ -75,3 +75,16 @@ def send_email_async(background_tasks, mail_data: dict, ):
     )
     background_tasks.add_task(fm.send_message, message, template_name='template_email.html')
     # await fm.send_message(message, template_name = 'template_email.html')
+
+
+async def get_client_ip(request):
+    client_ip = None
+    # nếu ko sử dụng revert proxy  hoặc không truyền x-forwarded-for, remote_addr trên headder thì client ip sẽ bị None
+    # nếu None thì cho pass
+    x_forwarded_for = request.headers.get("x-forwarded-for")
+    if x_forwarded_for:
+        client_ip = x_forwarded_for.split(",")[0]
+    else:
+        client_ip = request.headers.get("remote_addr")
+    return client_ip
+
