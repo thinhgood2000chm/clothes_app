@@ -209,7 +209,7 @@ function ProductDetail() {
                                             ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo
                                         pharetras loremos.</p> */}
                                                 <div class="product__details__tab__content__item">
-                                                    <h5>Products Infomation</h5>
+                                                    <h5>Thông tin sản phẩm</h5>
                                                     {description}
                                                     {/* <p>A Pocket PC is a handheld computer, which features many of the same
                                                         capabilities as a modern PC. These handy little devices allow
@@ -226,7 +226,7 @@ function ProductDetail() {
                                                         $350.00, a new Pocket PC can now be purchased.</p> */}
                                                 </div>
                                                 <div class="product__details__tab__content__item">
-                                                    <h5>Material used</h5>
+                                                    <h5>Chất liệu sử dụng</h5>
                                                     <p>{material}</p>
                                                 </div>
                                             </div>
